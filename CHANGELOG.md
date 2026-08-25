@@ -6,6 +6,13 @@ registry changes are listed under the release that shipped them.
 
 ## Unreleased
 
+### Fixed
+
+- Synchronized the PEP 621 project version with the documented `0.2.3`
+  release. The later PEP 639 license-metadata migration had left
+  `pyproject.toml` at `0.2.2`; this correction does not change the separate
+  statute-registry version (`config.json` v5).
+
 ## 0.2.3 — 2026-07-28
 
 ### Added
