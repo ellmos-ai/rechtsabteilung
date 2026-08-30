@@ -33,7 +33,7 @@
   "source_of_truth": {
     "type": "local-directory",
     "path": ".",
-    "repository": "https://github.com/ellmos-ai/law-checker"
+    "repository": "https://github.com/ellmos-ai/rechtsabteilung"
   },
   "adapters": []
 }
