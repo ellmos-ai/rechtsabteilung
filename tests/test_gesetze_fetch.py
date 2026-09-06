@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Unit tests for _tools/gesetze_fetch.py."""
 import xml.etree.ElementTree as ET
-from pathlib import Path
-import pytest
 
 from _tools.gesetze_fetch import load_registry, norm_text, extract, process
 

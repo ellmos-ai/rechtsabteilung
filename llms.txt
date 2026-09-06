@@ -1,6 +1,11 @@
-## Last-checked: 2026-07-28
+## Last-checked: 2026-09-06
 
 # ellmos-ai/law-checker
+
+- Version: 0.2.4
+- Status: Active
+- License: MIT
+- Ecosystem: ellmos-ai / open-bricks
 
 Source-grounded legal first-look skill for German law. The repository contains
 Markdown prompts, a configurable statute registry and a small fetch tool for

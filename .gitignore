@@ -2,6 +2,7 @@
 _gutachten/
 _intern/
 LOCK*.txt
+*.lock
 TODO.md
 _after-care/
 
@@ -15,13 +16,38 @@ config.local.json
 # Lokale Secrets, Datenbanken, virtuelle Umgebungen und IDE-Zustand
 .env
 *.db
+*.sqlite
+*.sqlite3
 .venv/
 .idea/
 .vscode/
 
-# Python
+# Python, Caches & Packaging
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+*.egg-info/
+.wheel-smoke/
+
+# Coverage & Test-Artefakte
+.coverage
+htmlcov/
+*.lcov
+
+# Synchronisations-Konflikte & Backups
+*.sync-conflict-*
+*.conflict
+*-CONFLIT-*
+*.tmp
+*.bak
+*.orig
+*.rej
 
 # OS/Editor
 Thumbs.db

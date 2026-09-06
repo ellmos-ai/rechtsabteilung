@@ -4,14 +4,18 @@ All notable changes to this project are documented here.
 The statute registry carries its own `version` counter in `config.json`;
 registry changes are listed under the release that shipped them.
 
-## Unreleased
+## 0.2.4 — 2026-09-06
 
-### Fixed
+### Added
 
-- Synchronized the PEP 621 project version with the documented `0.2.3`
-  release. The later PEP 639 license-metadata migration had left
-  `pyproject.toml` at `0.2.2`; this correction does not change the separate
-  statute-registry version (`config.json` v5).
+- Multi-OS GitHub Actions CI workflow (`.github/workflows/ci.yml`) testing matrix across Ubuntu, Windows, and macOS on Python 3.10, 3.11, 3.12, and 3.13 with concurrency cancellation (`cancel-in-progress: true`).
+- Comprehensive automated contract test suite (`tests/test_metadata.py`) verifying PEP 621 metadata, PEP 639 SPDX license, CI matrix integrity, bilingual security policy, .gitignore patterns, llms.txt parity, and zero path leaks (14/14 Pytest tests passing | 100% pass).
+- Full PEP 621 `[project.urls]` in `pyproject.toml` including Parent Organization (`ellmos-ai`), Umbrella Ecosystem (`open-bricks`), and Security policy links.
+- `_tools/__init__.py` and explicit `[tool.setuptools.packages.find]` packaging configuration in `pyproject.toml` resolving flat-layout packaging build error.
+- Bilingual security policy (`SECURITY.md`) with structured Supported Versions table (`0.2.x`), 48-hour response SLA, and official security contacts (`security@ellmos.ai`, `support@lukasgeiger.com`, `lukas@open-bricks.org`, `security@open-bricks.org`).
+- Repository hygiene and `.gitignore` hardening with sync conflict patterns, test caches, coverage artifacts, and lock file rules.
+- Shields.io badges in `README.md` synchronized to 14 passed Pytest tests, multi-OS CI matrix, ecosystem, umbrella, and AI-friendly discovery.
+- Synchronized `llms.txt` with version `0.2.4` and Last-checked date `2026-09-06`.
 
 ## 0.2.3 — 2026-07-28
 
@@ -19,6 +23,13 @@ registry changes are listed under the release that shipped them.
 
 - Synchronized `llms.txt` and `README.md` AI/LLM discovery verification timestamp (`2026-07-28`).
 - Verified 4/4 Pytest unit test suite passing (0.48s).
+
+### Fixed
+
+- Synchronized the PEP 621 project version with the documented `0.2.3`
+  release. The later PEP 639 license-metadata migration had left
+  `pyproject.toml` at `0.2.2`; this correction does not change the separate
+  statute-registry version (`config.json` v5).
 
 ## 0.2.2 — 2026-07-26
 

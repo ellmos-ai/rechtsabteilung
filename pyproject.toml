@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "law-checker"
-version = "0.2.3"
+version = "0.2.4"
 description = "Source-grounded legal first-look skill and statute registry workflow for German law."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -31,6 +31,8 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
@@ -44,6 +46,14 @@ Repository = "https://github.com/ellmos-ai/law-checker"
 Documentation = "https://github.com/ellmos-ai/law-checker#readme"
 Changelog = "https://github.com/ellmos-ai/law-checker/blob/main/CHANGELOG.md"
 Issues = "https://github.com/ellmos-ai/law-checker/issues"
+Security = "https://github.com/ellmos-ai/law-checker/blob/main/SECURITY.md"
+"Parent Organization" = "https://github.com/ellmos-ai"
+"Umbrella Ecosystem" = "https://github.com/open-bricks"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["_tools*"]
+exclude = ["agents*", "assets*", "references*", "tests*", "docs*", "_gutachten*", "_data*"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
