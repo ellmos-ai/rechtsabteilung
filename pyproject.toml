@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "law-checker"
-version = "0.2.4"
+version = "0.2.5"
 description = "Source-grounded legal first-look skill and statute registry workflow for German law."
 readme = "README.md"
 requires-python = ">=3.10"

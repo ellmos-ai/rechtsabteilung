@@ -4,6 +4,26 @@ All notable changes to this project are documented here.
 The statute registry carries its own `version` counter in `config.json`;
 registry changes are listed under the release that shipped them.
 
+## 0.2.5 — 2026-09-09
+
+### Added
+
+- Canonical German documentation (`README_de.md`) with 100% bilingual parity to `README.md`, including bidirectional language switchers (`**English** | [Deutsch](README_de.md)` / `[English](README.md) | **Deutsch**`).
+- 14-point standardized quick navigation with matching anchor parity across English and German documentation.
+- Dual bilingual Mermaid diagrams:
+  - System architecture flowchart (`flowchart TD`) mapping orchestrator, statute registry, XML fetcher, embodiment agent, case law layer, report format, and escalation matrix.
+  - 10-step legal orientation lifecycle sequence diagram (`sequenceDiagram` with `autonumber`) illustrating the step-by-step execution path, incoming mail deadline triage, parallel statute embodiment, web-verified jurisprudence, and adversarial review.
+- Comprehensive table of 10 immutable Governance & Runtime Invariants (100% local-first isolation, strict source grounding, web-verified jurisprudence, RDG self-use boundaries, strict deadline discipline, statute registry versioning, non-elevation safety, deterministic risk scoring, multi-OS CI matrix, and bilingual documentation parity).
+- Sibling Tools & Ecosystem integration matrix cross-linking 12 partner repositories across `ellmos-ai` and `open-bricks` (including `anonymizer`, `policy-registry`, `lock-master`, `automation-master`, `companion-for-agy`, etc.).
+- Local marketing and discoverability log (`MARKETING-LOG.txt`) tracking completed visibility enhancements, homepage URL fixes, and open external recommendations (screencast walkthrough, legal tech publications, MCP server directory listings, D-A-CH statute expansion, local UI demo).
+- Expanded automated contract test suite in `tests/test_metadata.py` verifying navigation anchor parity, bilingual language switchers, mermaid diagram syntax validity, governance invariants, and marketing log presence.
+
+### Changed
+
+- Overhauled `README.md` to full English documentation with modernized Shields.io badges, comprehensive operational guidelines, and legal classification under § 2 Abs. 1 RDG.
+- Corrected live GitHub repository homepage URL from outdated hash link to canonical `https://github.com/ellmos-ai/rechtsabteilung#readme`.
+- Bumped project version to `0.2.5` in `pyproject.toml` and synchronized `llms.txt` (version 0.2.5, Last-checked: 2026-09-09).
+
 ## 0.2.4 — 2026-09-06
 
 ### Added

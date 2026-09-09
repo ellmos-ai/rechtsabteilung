@@ -1,0 +1,50 @@
+# MARKETING-LOG.txt — law-checker (Rechtsabteilung)
+# Pfad B: Discoverability, Branding, und Marketing-Empfehlungen
+# Stand: 2026-09-09
+
+Dieses Dokument erfasst alle nicht-automatisierten oder externen Empfehlungen zur Steigerung der Sichtbarkeit, Nutzerführung und Verbreitung des Projekts.
+
+## 1. Durchgeführte Maßnahmen (Stand: 2026-09-09)
+
+- **GitHub Repository Homepage URL:** Live-Metadatum im GitHub-Repository von der veralteten URL (law-checker#readme) auf die kanonische URL `https://github.com/ellmos-ai/rechtsabteilung#readme` korrigiert.
+- **Zweisprachige Dokumentations-Architektur (EN/DE):** Vollständiges deutsches Dokument `README_de.md` angelegt und englisches `README.md` auf 100% Sprachparität ausgebaut. Beide Dokumente verfügen über standardisierte Sprachumschalter im Kopf und konsistente Shields.io-Badges.
+- **14-Punkte-Schnellnavigation:** Standardisierte Schnellnavigation mit vollständiger Ankerparität in beiden READMEs etabliert.
+- **Interaktive zweisprachige Mermaid-Diagramme:**
+  - Systemarchitektur (`flowchart TD`) mit getrennten Schichten für Orchestrierung, Normtexte, Auslegung und Berichterstellung.
+  - 10-stufiger Prüfungs- und Ausführungslebenszyklus (`sequenceDiagram` mit `autonumber`) zur visuellen Vermittlung des Gutachtenablaufs und der Fristendisziplin.
+- **Tabelle der Governance- & Laufzeit-Invarianten:** 10 unverletzliche Garantien (100% Offline / Zero-Egress, Quellenbindung, Web-verifizierte Rechtsprechung, RDG-Selbstanwendung, Fristendisziplin, Registry-Versionierung, Non-Elevation, Risikomatrix, Multi-OS CI und zweisprachige Parität) explizit dokumentiert.
+- **Geschwisterwerkzeuge & Ökosystem-Matrix:** Integration von 12 Partner-Projekten im `ellmos-ai` und `open-bricks` Ökosystem (inkl. `anonymizer`, `policy-registry`, `lock-master`, `automation-master`, `companion-for-agy`, etc.).
+- **Maschinenlesbarer Kontext (llms.txt):** Synchronisiert auf Version 0.2.5 und Datum 2026-09-09 inklusive Verweisen auf `README_de.md` und Dual-Mermaid-Diagramme.
+- **Automatisierte Vertragstests:** Testsuite `tests/test_metadata.py` erweitert um Schnellnavigations-Ankerparität, Invarianten-Prüfung, Mermaid-Validierung und Marketing-Log-Existenz.
+
+---
+
+## 2. Offene Empfehlungen für manuelle & externe Umsetzung
+
+### A. Video-Walkthrough / Screencast-Demonstration (YouTube / PeerTube)
+- **Empfehlung:** Erstellung eines 3- bis 5-minütigen Bildschirmvideos, das den praktischen Einsatz des Skills in Claude Code demonstriert:
+  1. Aufruf von `/rechtsabteilung` mit einer praxisnahen Frage (z. B. Impressumspflicht für Open-Source-Repositories).
+  2. Visuelle Darstellung des Normtext-Abrufs (`_tools/gesetze_fetch.py`) und der Verkörperung des BGB / TDDDG.
+  3. Ausgabe des strukturierten, quellbelegten Gutachtens in `_gutachten/`.
+- **Kanäle:** YouTube-Kanal von ellmos-ai / open-bricks, Twitter/X, LinkedIn.
+
+### B. Fachartikel & Blogpost (LegalTech / AI Engineering)
+- **Empfehlung:** Veröffentlichung eines Artikels über „Source-Grounded Legal AI: Das Verkörperungs-Prinzip für Gesetzbücher im Vergleich zu RAG".
+- **Fokus:** Herausarbeiten der Vorteile des Verkörperungs-Ansatzes („Du bist das Gesetzbuch") gegenüber unzuverlässigem Chunk-Retrieval bei komplexen Normgefügen.
+- **Zielgruppen:** Juristische IT-Konferenzen (z. B. EDV-Gerichtstag, IRIS), LegalTech-Blogs und juristische Fachzeitschriften (z. B. NJW, MMR, RDi).
+
+### C. Paketierung & Verzeichnis-Listings (MCP / Agent Skills)
+- **Empfehlung:** Sobald eine native Model Context Protocol (MCP) Server-Schnittstelle bereitgestellt wird, Eintragung in führende AI-Kataloge:
+  - [Glama.ai](https://glama.ai/mcp/servers)
+  - [Smithery.ai](https://smithery.ai)
+  - [mcp.so](https://mcp.so)
+  - [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+
+### D. Internationale Erweiterung der Normtext-Schnittstelle
+- **Empfehlung:** Erweiterung des Downloaders `_tools/gesetze_fetch.py` um offizielle XML-/JSON-Schnittstellen für:
+  - Österreichisches Bundesrecht (Rechtsinformationssystem des Bundes — RIS API)
+  - Schweizer Bundesrecht (Fedlex-Plattform der Bundeskanzlei)
+- **Ziel:** Bereitstellung eines einheitlichen D-A-CH-Rechtsprüfungs-Workflows.
+
+### E. Lokale UI-Demo (Gradio / Streamlit)
+- **Empfehlung:** Bereitstellung einer optionalen lokalen Web-Oberfläche (`ui/app.py`), um juristischen Anwendern ohne Terminal- und CLI-Erfahrung die intuitive Nutzung von `law-checker` mit Dropdown-Auswahl der Gesetzbücher zu ermöglichen.

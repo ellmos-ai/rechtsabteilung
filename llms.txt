@@ -1,8 +1,8 @@
-## Last-checked: 2026-09-06
+## Last-checked: 2026-09-09
 
 # ellmos-ai/law-checker
 
-- Version: 0.2.4
+- Version: 0.2.5
 - Status: Active
 - License: MIT
 - Ecosystem: ellmos-ai / open-bricks
@@ -29,7 +29,8 @@ environment such as Claude Code.
 
 ## Key Files
 
-- `README.md` - public overview, purpose limits, privacy notes and installation
+- `README.md` - public overview in English, 14-point navigation, system architecture, sequence diagram, and invariants
+- `README_de.md` - vollständige deutsche Dokumentation mit 100% Parität und Schnellnavigation
 - `SKILL.md` - orchestration workflow for the legal first-look skill
 - `config.json` - statute registry and workflow configuration
 - `agents/gesetzbuch.md` - generic statute embodiment agent

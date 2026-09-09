@@ -144,8 +144,9 @@ def test_llms_txt_structure_and_date():
     assert llms_path.is_file(), "llms.txt must exist"
 
     content = llms_path.read_text(encoding="utf-8")
-    assert "## Last-checked: 2026-09-06" in content, "llms.txt Last-checked date must be 2026-09-06"
+    assert "## Last-checked: 2026-09-09" in content, "llms.txt Last-checked date must be 2026-09-09"
     assert "README.md" in content
+    assert "README_de.md" in content
     assert "SKILL.md" in content
     assert "config.json" in content
     assert "SECURITY.md" in content
@@ -164,6 +165,100 @@ def test_readme_bilingual_and_badges():
     assert "Umbrella-open--bricks" in content
     assert "License-MIT" in content
     assert "llms.txt" in content
+
+
+def test_readme_bilingual_parity_and_navigation():
+    """Verify 14-point quick navigation parity and language switchers across README.md and README_de.md."""
+    readme_en = ROOT / "README.md"
+    readme_de = ROOT / "README_de.md"
+    assert readme_en.is_file(), "README.md must exist"
+    assert readme_de.is_file(), "README_de.md must exist"
+
+    text_en = readme_en.read_text(encoding="utf-8")
+    text_de = readme_de.read_text(encoding="utf-8")
+
+    # Language switcher checks
+    assert "**English** | [Deutsch](README_de.md)" in text_en, "README.md missing language switcher"
+    assert "[English](README.md) | **Deutsch**" in text_de, "README_de.md missing language switcher"
+
+    # 14 English anchors
+    en_expected_anchors = [
+        "#overview",
+        "#system-architecture",
+        "#workflow-lifecycle",
+        "#governance--runtime-invariants",
+        "#legal-framework--rdg-classification",
+        "#sibling-tools--ecosystem",
+        "#installation--quickstart",
+        "#adding-new-statutes",
+        "#data-privacy--confidentiality",
+        "#statute-registry-inventory",
+        "#repository-layout",
+        "#security-policy",
+        "#provenance--authorship",
+        "#license--disclaimers",
+    ]
+    for anchor in en_expected_anchors:
+        assert f"]({anchor})" in text_en, f"README.md missing navigation anchor: {anchor}"
+
+    # 14 German anchors
+    de_expected_anchors = [
+        "#übersicht",
+        "#systemarchitektur",
+        "#ablauf--und-prüfungslebenszyklus",
+        "#governance--und-laufzeit-invarianten",
+        "#rechtlicher-rahmen-und-rdg-einordnung",
+        "#geschwisterwerkzeuge-und-ökosystem",
+        "#installation-und-schnelleinstieg",
+        "#neue-gesetze-hinzufügen",
+        "#datenschutz-und-vertraulichkeit",
+        "#gesetzes-registry-bestand",
+        "#repository-struktur",
+        "#sicherheitsrichtlinie",
+        "#herkunft-und-autorenschaft",
+        "#haftung-lizenz-und-grenzen",
+    ]
+    for anchor in de_expected_anchors:
+        assert f"]({anchor})" in text_de, f"README_de.md missing navigation anchor: {anchor}"
+
+
+def test_dual_mermaid_diagrams_in_readmes():
+    """Verify both READMEs include flowchart and sequence diagram without unquoted parenthetical labels."""
+    for readme_name in ["README.md", "README_de.md"]:
+        text = (ROOT / readme_name).read_text(encoding="utf-8")
+        assert "flowchart TD" in text, f"{readme_name} missing flowchart TD"
+        assert "sequenceDiagram" in text, f"{readme_name} missing sequenceDiagram"
+        assert "autonumber" in text, f"{readme_name} sequenceDiagram missing autonumber"
+
+
+def test_governance_invariants_table_contract():
+    """Verify both READMEs document the 10 Governance & Runtime Invariants."""
+    for readme_name in ["README.md", "README_de.md"]:
+        text = (ROOT / readme_name).read_text(encoding="utf-8")
+        for inv_num in range(1, 11):
+            assert f"| {inv_num} |" in text, f"{readme_name} missing Governance Invariant #{inv_num}"
+
+
+def test_marketing_log_contract():
+    """Verify local MARKETING-LOG.txt exists and contains structured Pfad B backlog."""
+    log_path = ROOT / "MARKETING-LOG.txt"
+    assert log_path.is_file(), "MARKETING-LOG.txt must exist in repository root"
+    content = log_path.read_text(encoding="utf-8")
+    assert "MARKETING-LOG.txt" in content
+    assert "Pfad B" in content
+    assert "2026-09-09" in content
+
+
+def test_sibling_ecosystem_matrix():
+    """Verify both READMEs contain ecosystem links to sibling tools."""
+    for readme_name in ["README.md", "README_de.md"]:
+        text = (ROOT / readme_name).read_text(encoding="utf-8")
+        assert "https://github.com/ellmos-ai" in text
+        assert "https://github.com/open-bricks" in text
+        assert "https://github.com/ellmos-ai/anonymizer" in text
+        assert "https://github.com/ellmos-ai/policy-registry" in text
+        assert "https://github.com/ellmos-ai/lock-master" in text
+        assert "https://github.com/dev-bricks/automation-master" in text
 
 
 def test_no_forbidden_tracked_leaks():
