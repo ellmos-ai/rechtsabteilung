@@ -144,7 +144,7 @@ def test_llms_txt_structure_and_date():
     assert llms_path.is_file(), "llms.txt must exist"
 
     content = llms_path.read_text(encoding="utf-8")
-    assert "## Last-checked: 2026-09-09" in content, "llms.txt Last-checked date must be 2026-09-09"
+    assert "## Last-checked: 2026-09-10" in content, "llms.txt Last-checked date must be 2026-09-10"
     assert "README.md" in content
     assert "README_de.md" in content
     assert "SKILL.md" in content
@@ -287,3 +287,72 @@ def test_no_forbidden_tracked_leaks():
             continue
         for marker in forbidden_markers:
             assert marker.lower() not in text.lower(), f"Potential path leak '{marker}' in {rel_path}"
+
+
+def test_pytest_ini_options_and_os_classifiers():
+    """Verify pyproject.toml defines addopts with -ra -v and detailed OS classifiers."""
+    data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    ini_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
+    assert "-ra -v" in ini_opts.get("addopts", "")
+
+    classifiers = data.get("project", {}).get("classifiers", [])
+    for expected_os in [
+        "Operating System :: OS Independent",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOS",
+    ]:
+        assert expected_os in classifiers, f"Missing OS classifier: {expected_os}"
+
+    opt_deps = data.get("project", {}).get("optional-dependencies", {})
+    assert "dev" in opt_deps, "pyproject missing dev optional dependencies"
+    assert "test" in opt_deps, "pyproject missing test optional dependencies"
+
+
+def test_ci_workflow_hardening():
+    """Verify CI workflow has permissions read, compilation step, and ruff gate."""
+    ci_path = ROOT / ".github" / "workflows" / "ci.yml"
+    assert ci_path.is_file(), "ci.yml must exist"
+    content = ci_path.read_text(encoding="utf-8")
+    assert "permissions:" in content
+    assert "contents: read" in content
+    assert "python -m compileall -q ." in content
+    assert "ruff check ." in content
+    assert "python -m pytest -ra -v" in content
+
+
+def test_stale_workflow_present():
+    """Verify standard Stale Issues & PRs workflow exists and is configured."""
+    stale_path = ROOT / ".github" / "workflows" / "stale.yml"
+    assert stale_path.is_file(), ".github/workflows/stale.yml must exist"
+    content = stale_path.read_text(encoding="utf-8")
+    assert "actions/stale@v9" in content
+    assert "issues: write" in content
+    assert "pull-requests: write" in content
+
+
+def test_multihost_conflict_and_lock_patterns():
+    """Verify .gitignore contains full multi-host conflict, multi-agent lock, and packaging patterns."""
+    gi_path = ROOT / ".gitignore"
+    assert gi_path.is_file(), ".gitignore must exist"
+    content = gi_path.read_text(encoding="utf-8")
+    for pattern in [
+        "*-conflict-*",
+        "*.sync-temp-*",
+        "*-ASUS-GEI.*",
+        "*-WORKSTATION-LG.*",
+        "LOCK",
+        "LOCK.*",
+        "LOCK.permissions.json",
+        "wheelhouse/",
+        "coverage/",
+    ]:
+        assert pattern in content, f".gitignore missing pattern: {pattern}"
+
+
+def test_changelog_release_entry():
+    """Verify CHANGELOG.md contains release entry for current version with date."""
+    pyproject_data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    version = pyproject_data["project"]["version"]
+    changelog_text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+    assert f"## {version} — 2026-09-10" in changelog_text, f"Missing release entry for {version} — 2026-09-10"

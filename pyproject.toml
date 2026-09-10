@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "law-checker"
-version = "0.2.5"
+version = "0.2.6"
 description = "Source-grounded legal first-look skill and statute registry workflow for German law."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -33,11 +33,23 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
     "requests>=2.28.0",
     "urllib3>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4.0",
+]
+test = [
+    "pytest>=7.0",
 ]
 
 [project.urls]
@@ -57,5 +69,10 @@ exclude = ["agents*", "assets*", "references*", "tests*", "docs*", "_gutachten*"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
+addopts = "-ra -v"
 testpaths = ["tests", "_tools"]
 pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

@@ -1,8 +1,8 @@
-## Last-checked: 2026-09-09
+## Last-checked: 2026-09-10
 
 # ellmos-ai/law-checker
 
-- Version: 0.2.5
+- Version: 0.2.6
 - Status: Active
 - License: MIT
 - Ecosystem: ellmos-ai / open-bricks

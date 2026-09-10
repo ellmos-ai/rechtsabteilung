@@ -4,10 +4,10 @@
 
 # law-checker (Rechtsabteilung)
 
-[![Version: 0.2.5](https://img.shields.io/badge/Version-0.2.5-blue.svg)](CHANGELOG.md)
+[![Version: 0.2.6](https://img.shields.io/badge/Version-0.2.6-blue.svg)](CHANGELOG.md)
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/Tests-19%20passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-24%20passed-brightgreen.svg)](tests/)
 [![CI-Matrix](https://img.shields.io/badge/CI-Multi--OS%20%7C%20Ubuntu%20%7C%20Windows%20%7C%20macOS-blue.svg)](.github/workflows/ci.yml)
 [![Local-First](https://img.shields.io/badge/Architektur-Local--First-green.svg)](#datenschutz-und-vertraulichkeit)
 [![Zero-Egress](https://img.shields.io/badge/Datenschutz-100%25%20Offline%20%2F%20Zero--Egress-success.svg)](#datenschutz-und-vertraulichkeit)
@@ -21,7 +21,7 @@
 **Open-Source-KI-Workflow für quellbelegte rechtliche Ersteinschätzungen nach deutschem Recht.**
 
 > [!NOTE]
-> **KI- / LLM-Agenten-Erkennung:** Eine maschinenlesbare Zusammenfassung steht in [`llms.txt`](llms.txt) zur Verfügung (Stand: 2026-09-09).
+> **KI- / LLM-Agenten-Erkennung:** Eine maschinenlesbare Zusammenfassung steht in [`llms.txt`](llms.txt) zur Verfügung (Stand: 2026-09-10).
 
 > [!IMPORTANT]
 > **Wichtig: KI-gestützte Erstorientierung, keine Rechtsberatung.** Dieses Werkzeug ersetzt weder die individuelle Prüfung noch die Beratung durch eine zugelassene Rechtsanwältin oder einen zugelassenen Rechtsanwalt. Ob ein konkreter Einsatz eine Rechtsdienstleistung darstellt und zulässig ist, hängt von Einsatzform, Betreiberrolle und Einzelfall ab. Es erfolgt keine Fristenüberwachung und keine automatische Vollständigkeits- oder Aktualitätsgarantie. Bei behördlicher oder gerichtlicher Rechtspost sowie laufenden Rechtsbehelfsfristen ist unverzüglich professioneller Rechtsrat einzuholen.

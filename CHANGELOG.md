@@ -4,6 +4,23 @@ All notable changes to this project are documented here.
 The statute registry carries its own `version` counter in `config.json`;
 registry changes are listed under the release that shipped them.
 
+## 0.2.6 — 2026-09-10
+
+### Added
+
+- Dedicated Stale Issues & Pull Requests workflow (`.github/workflows/stale.yml`) for automated lifecycle management and inactivity triage.
+- Standardized OS classifiers in `pyproject.toml` for Microsoft Windows, POSIX Linux, and macOS.
+- PEP 621 optional dependencies (`dev`, `test`) in `pyproject.toml` for standardized testing and linting environments.
+- Pytest standard invocation configuration (`addopts = "-ra -v"`) and Ruff target configuration (`line-length = 100`, `target-version = "py310"`) in `pyproject.toml`.
+- Expanded automated contract test suite in `tests/test_metadata.py` with 5 additional contract tests covering CI permissions and bytecode gates, stale workflow existence, .gitignore multi-host synchronization patterns, Pytest options and OS classifiers, and CHANGELOG release synchronization (24/24 tests passing).
+
+### Changed
+
+- Hardened CI workflow (`.github/workflows/ci.yml`) with explicit `permissions: { contents: read }`, standardized `pytest -ra -v` runner, and repository-wide bytecode compilation check (`python -m compileall -q .`).
+- Hardened `.gitignore` with multi-host synchronization conflict patterns (`*-conflict-*`, `*.sync-temp-*`, `*-ASUS-GEI.*`, `*-WORKSTATION-LG.*`), multi-agent lock patterns (`LOCK`, `LOCK.*`, `LOCK.permissions.json`), and packaging caches (`wheelhouse/`, `coverage/`, `*.swp`, `*.log`).
+- Bumped project version to `0.2.6` in `pyproject.toml` and synchronized `llms.txt` (version 0.2.6, Last-checked: 2026-09-10).
+- Updated Shields.io badges in `README.md` and `README_de.md` to reflect version `0.2.6`, 24 passing tests, and updated discovery date.
+
 ## 0.2.5 — 2026-09-09
 
 ### Added

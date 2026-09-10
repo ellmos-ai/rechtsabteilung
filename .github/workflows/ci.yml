@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -34,9 +37,9 @@ jobs:
 
       - name: Run test suite
         run: |
-          python -m pytest -v
+          python -m pytest -ra -v
 
       - name: Run static and package checks
         run: |
-          python -m compileall -q _tools tests
+          python -m compileall -q .
           ruff check .

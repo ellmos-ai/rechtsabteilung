@@ -1,8 +1,11 @@
 # Interne Prüfvorgänge und Arbeitsdokumente (nicht Teil des Release)
 _gutachten/
 _intern/
+LOCK
+LOCK.*
 LOCK*.txt
 *.lock
+LOCK.permissions.json
 TODO.md
 _after-care/
 
@@ -21,6 +24,8 @@ config.local.json
 .venv/
 .idea/
 .vscode/
+*.swp
+*.log
 
 # Python, Caches & Packaging
 __pycache__/
@@ -32,6 +37,7 @@ __pycache__/
 .mypy_cache/
 dist/
 build/
+wheelhouse/
 *.egg-info/
 .wheel-smoke/
 
@@ -39,11 +45,16 @@ build/
 .coverage
 htmlcov/
 *.lcov
+coverage/
 
-# Synchronisations-Konflikte & Backups
+# Synchronisations-Konflikte & Multi-Host-Backups
+*-conflict-*
 *.sync-conflict-*
 *.conflict
 *-CONFLIT-*
+*.sync-temp-*
+*-ASUS-GEI.*
+*-WORKSTATION-LG.*
 *.tmp
 *.bak
 *.orig

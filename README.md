@@ -4,10 +4,10 @@
 
 # law-checker (Legal Department)
 
-[![Version: 0.2.5](https://img.shields.io/badge/Version-0.2.5-blue.svg)](CHANGELOG.md)
+[![Version: 0.2.6](https://img.shields.io/badge/Version-0.2.6-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/Tests-19%20passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-24%20passed-brightgreen.svg)](tests/)
 [![CI Matrix](https://img.shields.io/badge/CI-Multi--OS%20%7C%20Ubuntu%20%7C%20Windows%20%7C%20macOS-blue.svg)](.github/workflows/ci.yml)
 [![Local-First](https://img.shields.io/badge/Architecture-Local--First-green.svg)](#data-privacy--confidentiality)
 [![Zero-Egress](https://img.shields.io/badge/Privacy-100%25%20Offline%20%2F%20Zero--Egress-success.svg)](#data-privacy--confidentiality)
@@ -21,7 +21,7 @@
 **Open-source AI workflow for source-grounded legal first-look orientation under German law.**
 
 > [!NOTE]
-> **AI / LLM Agent Discovery:** A machine-readable summary is available in [`llms.txt`](llms.txt) (last checked: 2026-09-09).
+> **AI / LLM Agent Discovery:** A machine-readable summary is available in [`llms.txt`](llms.txt) (last checked: 2026-09-10).
 
 > [!IMPORTANT]
 > **Important Notice / Wichtig: AI-assisted first-look legal orientation, no legal advice.** This tool is not a law firm, not a hosted legal service, and not a replacement for an individual legal assessment by an admitted attorney-at-law. Whether a specific deployment constitutes a regulated legal service under the German Legal Services Act (*Rechtsdienstleistungsgesetz*, RDG) depends on operational model, operator role, and the individual case. There is no automated deadline monitoring and no guarantee of completeness or currency. If official, administrative, or judicial legal correspondence and running deadlines are involved, consult qualified legal counsel immediately.
