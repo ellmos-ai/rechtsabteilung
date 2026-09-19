@@ -1,0 +1,440 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 680" width="2400" height="680">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a12" />
+      <stop offset="35%" stop-color="#0a101d" />
+      <stop offset="70%" stop-color="#0c1322" />
+      <stop offset="100%" stop-color="#060910" />
+    </linearGradient>
+
+    <!-- Warm Golden Ambient Spotlights -->
+    <radialGradient id="motifAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.22" />
+      <stop offset="35%" stop-color="#b8860b" stop-opacity="0.11" />
+      <stop offset="70%" stop-color="#8b6508" stop-opacity="0.025" />
+      <stop offset="100%" stop-color="#0a101d" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="textAura" cx="40%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0a101d" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Metallic Gold Gradients -->
+    <linearGradient id="goldSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="25%" stop-color="#facc15" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="75%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#a16207" />
+    </linearGradient>
+
+    <linearGradient id="goldBar" x1="0" y1="0" x2="960" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#eab308" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#ca8a04" stop-opacity="0.5" />
+      <stop offset="75%" stop-color="#ca8a04" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="goldFrame" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ca8a04" stop-opacity="0.06" />
+      <stop offset="25%" stop-color="#eab308" stop-opacity="0.32" />
+      <stop offset="50%" stop-color="#fef08a" stop-opacity="0.45" />
+      <stop offset="75%" stop-color="#eab308" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.06" />
+    </linearGradient>
+
+    <!-- Typography Gradients -->
+    <linearGradient id="silverText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <linearGradient id="goldText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="45%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Robe Fabric Gradients -->
+    <linearGradient id="robeBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0c1017" />
+      <stop offset="18%" stop-color="#182132" />
+      <stop offset="38%" stop-color="#111622" />
+      <stop offset="62%" stop-color="#1f283c" />
+      <stop offset="82%" stop-color="#131824" />
+      <stop offset="100%" stop-color="#0b0e15" />
+    </linearGradient>
+
+    <linearGradient id="sleeveLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#080c12" />
+      <stop offset="35%" stop-color="#141c28" />
+      <stop offset="75%" stop-color="#1a2434" />
+      <stop offset="100%" stop-color="#0a0e14" />
+    </linearGradient>
+
+    <linearGradient id="sleeveRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a0e14" />
+      <stop offset="25%" stop-color="#1a2434" />
+      <stop offset="65%" stop-color="#141c28" />
+      <stop offset="100%" stop-color="#080c12" />
+    </linearGradient>
+
+    <linearGradient id="lapelSilk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c3950" />
+      <stop offset="35%" stop-color="#1b2332" />
+      <stop offset="75%" stop-color="#111622" />
+      <stop offset="100%" stop-color="#090d14" />
+    </linearGradient>
+
+    <!-- Stand Gradients -->
+    <linearGradient id="standBrass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#92400e" />
+      <stop offset="25%" stop-color="#fef08a" />
+      <stop offset="55%" stop-color="#d97706" />
+      <stop offset="85%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <linearGradient id="woodHanger" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#24120b" />
+      <stop offset="35%" stop-color="#452417" />
+      <stop offset="65%" stop-color="#5a3120" />
+      <stop offset="100%" stop-color="#1f0f08" />
+    </linearGradient>
+
+    <!-- Wig Gradients -->
+    <linearGradient id="wigCurlHoriz" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#f8fafc" />
+      <stop offset="75%" stop-color="#e2e8f0" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+
+    <linearGradient id="wigCapLining" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2430" />
+      <stop offset="50%" stop-color="#0f141d" />
+      <stop offset="100%" stop-color="#05070a" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow Filter -->
+    <filter id="motifShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000000" flood-opacity="0.85" />
+    </filter>
+
+    <filter id="textDropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.55" />
+    </filter>
+  </defs>
+
+  <!-- Base Canvas Background -->
+  <rect width="2400" height="680" fill="url(#bgGrad)" />
+
+  <!-- Ambient Glows -->
+  <circle cx="560" cy="330" r="480" fill="url(#motifAura)" />
+  <circle cx="1560" cy="340" r="620" fill="url(#textAura)" />
+
+  <!-- Background Decorative Watermark: Scales of Justice (Dezent, leise) -->
+  <g transform="translate(1860, 115)" opacity="0.04" stroke="#d4af37" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="160" y1="20" x2="160" y2="450" stroke-width="5" />
+    <path d="M 60 450 L 260 450" stroke-width="7" />
+    <path d="M 110 450 L 160 415 L 210 450" stroke-width="3" />
+    <circle cx="160" cy="20" r="12" fill="#d4af37" />
+    <!-- Beam -->
+    <line x1="20" y1="80" x2="300" y2="80" stroke-width="6" />
+    <polygon points="160,40 150,80 170,80" fill="#d4af37" />
+    <!-- Left Scale Pan -->
+    <line x1="30" y1="80" x2="0" y2="200" stroke-width="1.8" />
+    <line x1="30" y1="80" x2="60" y2="200" stroke-width="1.8" />
+    <path d="M -10 200 Q 30 240 70 200 Z" fill="#d4af37" />
+    <!-- Right Scale Pan -->
+    <line x1="290" y1="80" x2="260" y2="200" stroke-width="1.8" />
+    <line x1="290" y1="80" x2="320" y2="200" stroke-width="1.8" />
+    <path d="M 250 200 Q 290 240 330 200 Z" fill="#d4af37" />
+  </g>
+
+  <!-- Background Watermark: Paragraph Sign (§) behind motif (subtle hint on German law) -->
+  <text x="270" y="530" font-family="'Georgia', serif" font-size="560" font-weight="bold" fill="#d4af37" opacity="0.02" text-anchor="middle">§</text>
+
+  <!-- Elegant Perimeter Frame -->
+  <rect x="36" y="32" width="2328" height="616" rx="6" fill="none" stroke="url(#goldFrame)" stroke-width="1.2" />
+  <!-- Corner Brackets -->
+  <g stroke="#f59e0b" stroke-width="2.5" fill="none" opacity="0.75">
+    <path d="M 30 52 L 30 26 L 56 26" />
+    <path d="M 2370 52 L 2370 26 L 2344 26" />
+    <path d="M 30 628 L 30 654 L 56 654" />
+    <path d="M 2370 628 L 2370 654 L 2344 654" />
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- MOTIF: THE EMPTY JUDICIAL ROBE & WIG ON VALET STAND          -->
+  <!-- Center: X = 560. High-craft vector art, unmistakably empty   -->
+  <!-- ============================================================ -->
+  <g id="motif" filter="url(#motifShadow)">
+
+    <!-- 1. VALET / COAT STAND (Mahogany wood & Polished Brass) -->
+    <!-- Base -->
+    <ellipse cx="560" cy="630" rx="140" ry="16" fill="#060910" />
+    <ellipse cx="560" cy="626" rx="124" ry="13" fill="url(#standBrass)" stroke="#451a03" stroke-width="1" />
+    <ellipse cx="560" cy="623" rx="95" ry="9" fill="#fef08a" opacity="0.4" />
+
+    <!-- Central Brass Pole (Extending from base up to the wig mount) -->
+    <rect x="556" y="80" width="8" height="545" fill="url(#standBrass)" />
+    <!-- Stand Collar Accent Ring -->
+    <rect x="553" y="275" width="14" height="6" rx="2" fill="url(#standBrass)" />
+
+    <!-- Polished Wooden Wig Block Headpiece (Inside the empty wig) -->
+    <ellipse cx="560" cy="155" rx="28" ry="34" fill="url(#woodHanger)" stroke="url(#standBrass)" stroke-width="1.2" />
+    <ellipse cx="557" cy="152" rx="22" ry="26" fill="#5a3120" opacity="0.4" />
+
+    <!-- Contoured Wooden Coat Hanger Shoulder Arms -->
+    <path d="M 345 238 
+             C 435 214 525 200 560 200 
+             C 595 200 685 214 775 238 
+             C 770 252 685 234 560 232 
+             C 435 234 350 252 345 238 Z" 
+          fill="url(#woodHanger)" 
+          stroke="#1f0f08" 
+          stroke-width="1.5" />
+    <!-- Polished Brass Hanger End Caps -->
+    <circle cx="346" cy="240" r="5" fill="url(#standBrass)" />
+    <circle cx="774" cy="240" r="5" fill="url(#standBrass)" />
+
+    <!-- 2. INSIDE BACK OF ROBE COLLAR (Completely Hollow / Unoccupied) -->
+    <path d="M 488 214 C 506 248 614 248 632 214 C 648 262 622 294 560 296 C 498 294 472 262 488 214 Z" 
+          fill="url(#wigCapLining)" 
+          stroke="#070a10" 
+          stroke-width="2" />
+    <!-- Brass Pole passing visibly through the vacant neck opening -->
+    <rect x="556" y="215" width="8" height="80" fill="url(#standBrass)" />
+
+    <!-- 3. THE BLACK RICHTERROBE (EMPTY & GRACEFULLY DRAPED) -->
+
+    <!-- Left Sleeve (Flowing judicial bell sleeve) -->
+    <path d="M 348 238 
+             C 305 290 275 390 286 540 
+             C 302 558 360 558 382 536 
+             C 360 430 380 318 424 248 
+             Z" 
+          fill="url(#sleeveLeft)" 
+          stroke="#06090e" 
+          stroke-width="1.5" />
+    <!-- Left Sleeve Deep Drapery Shadow -->
+    <path d="M 314 335 C 304 420 314 502 336 546 C 348 546 358 540 358 530 C 338 465 334 388 346 325 Z" 
+          fill="#04060a" 
+          opacity="0.8" />
+    <!-- Left Cuff Hem Accent -->
+    <path d="M 286 540 C 315 558 355 555 382 536" stroke="#1e293b" stroke-width="1.5" fill="none" />
+
+    <!-- Right Sleeve (Flowing judicial bell sleeve) -->
+    <path d="M 772 238 
+             C 815 290 845 390 834 540 
+             C 818 558 760 558 738 536 
+             C 760 430 740 318 696 248 
+             Z" 
+          fill="url(#sleeveRight)" 
+          stroke="#06090e" 
+          stroke-width="1.5" />
+    <!-- Right Sleeve Deep Drapery Shadow -->
+    <path d="M 806 335 C 816 420 806 502 784 546 C 772 546 762 540 762 530 C 782 465 786 388 774 325 Z" 
+          fill="#04060a" 
+          opacity="0.8" />
+    <!-- Right Cuff Hem Accent -->
+    <path d="M 738 536 C 765 555 805 558 834 540" stroke="#1e293b" stroke-width="1.5" fill="none" />
+
+    <!-- Main Robe Body (Richly gathered and draped to the floor) -->
+    <path d="M 414 244 
+             C 370 290 348 395 342 602 
+             C 415 624 705 624 778 602 
+             C 772 395 750 290 706 244 
+             C 664 268 630 278 560 278 
+             C 490 278 456 268 414 244 Z" 
+          fill="url(#robeBody)" 
+          stroke="#06090e" 
+          stroke-width="1.8" />
+
+    <!-- Judicial Pleated Yoke (Faltenwurf / Gown Shirring under shoulders) -->
+    <g stroke="#1a2334" stroke-width="1.2" opacity="0.75">
+      <line x1="432" y1="255" x2="428" y2="330" />
+      <line x1="446" y1="262" x2="442" y2="338" />
+      <line x1="460" y1="268" x2="456" y2="344" />
+      <line x1="474" y1="272" x2="470" y2="350" />
+
+      <line x1="688" y1="255" x2="692" y2="330" />
+      <line x1="674" y1="262" x2="678" y2="338" />
+      <line x1="660" y1="268" x2="664" y2="344" />
+      <line x1="646" y1="272" x2="650" y2="350" />
+    </g>
+
+    <!-- Deep Fabric Folds and Pleats (Long dramatic vertical drapes) -->
+    <!-- Left Flank Pleats -->
+    <path d="M 432 278 C 408 365 396 490 392 606 C 410 611 426 609 430 606 C 426 490 438 360 464 278 Z" fill="#07090e" />
+    <path d="M 468 280 C 456 370 452 500 454 610 C 470 612 486 611 490 609 C 480 500 484 370 498 280 Z" fill="#1e2738" opacity="0.4" />
+
+    <!-- Right Flank Pleats -->
+    <path d="M 688 278 C 712 365 724 490 728 606 C 710 611 694 609 690 606 C 694 490 682 360 656 278 Z" fill="#07090e" />
+    <path d="M 652 280 C 664 370 668 500 666 610 C 650 612 634 611 630 609 C 640 500 636 370 622 280 Z" fill="#1e2738" opacity="0.4" />
+
+    <!-- Center Robe Closure & Deep Shadow Flap -->
+    <path d="M 556 276 L 555 618 L 565 618 L 564 276 Z" fill="#040608" />
+
+    <!-- Silk / Velvet Facings (Broad Judicial Lapels running down chest) -->
+    <path d="M 484 236 L 452 410 L 508 410 L 524 262 Z" fill="url(#lapelSilk)" stroke="#090d14" stroke-width="1.2" />
+    <path d="M 636 236 L 668 410 L 612 410 L 596 262 Z" fill="url(#lapelSilk)" stroke="#090d14" stroke-width="1.2" />
+
+    <!-- Polished Gold Piping Edge on Lapels -->
+    <path d="M 484 236 L 452 410" stroke="#d4af37" stroke-width="1.4" stroke-opacity="0.75" />
+    <path d="M 636 236 L 668 410" stroke="#d4af37" stroke-width="1.4" stroke-opacity="0.75" />
+
+    <!-- 4. WHITE LEGAL BANDS / JABOT (BEFFCHEN) -->
+    <path d="M 520 248 Q 560 260 600 248 Q 594 258 560 264 Q 526 258 520 248 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <!-- Left Band -->
+    <path d="M 532 256 L 518 368 L 550 368 L 549 260 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+    <line x1="541" y1="258" x2="536" y2="366" stroke="#e2e8f0" stroke-width="1.2" />
+    <line x1="532" y1="368" x2="550" y2="368" stroke="#94a3b8" stroke-width="0.8" />
+    <!-- Right Band -->
+    <path d="M 571 260 L 570 368 L 602 368 L 588 256 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+    <line x1="579" y1="258" x2="584" y2="366" stroke="#e2e8f0" stroke-width="1.2" />
+    <line x1="570" y1="368" x2="602" y2="368" stroke="#94a3b8" stroke-width="0.8" />
+
+    <!-- ============================================================ -->
+    <!-- 5. WHITE RICHTER-PERÜCKE (BENCH WIG)                         -->
+    <!-- Distinctive curled horsehair wig resting on stand head, EMPTY -->
+    <!-- ============================================================ -->
+    <g id="bench-wig">
+      <!-- Dark Empty Hollow Inside Wig Arch (Clearly showing emptiness) -->
+      <path d="M 504 132 C 500 200 522 222 560 222 C 598 222 620 200 616 132 C 585 118 535 118 504 132 Z" 
+            fill="url(#wigCapLining)" 
+            stroke="#05070a" 
+            stroke-width="1.5" />
+
+      <!-- Wig Base Outer Structure -->
+      <path d="M 464 134 
+               C 452 72 518 56 560 56 
+               C 602 56 668 72 656 134 
+               C 670 172 664 216 654 246 
+               C 638 246 626 224 622 182 
+               C 620 130 596 112 560 112 
+               C 524 112 500 130 498 182 
+               C 494 224 482 246 466 246 
+               C 456 216 450 172 464 134 Z" 
+            fill="#f8fafc" />
+
+      <!-- Horizontal Curled Rolls across Crown (Authentic Barrister / Bench Wig) -->
+      <!-- Tier 1 (Peak) -->
+      <g fill="url(#wigCurlHoriz)" stroke="#94a3b8" stroke-width="0.6">
+        <rect x="544" y="60" width="32" height="12" rx="6" />
+        <rect x="524" y="64" width="28" height="12" rx="6" />
+        <rect x="568" y="64" width="28" height="12" rx="6" />
+
+        <!-- Tier 2 -->
+        <rect x="502" y="75" width="30" height="12.5" rx="6.25" />
+        <rect x="528" y="73" width="30" height="12.5" rx="6.25" />
+        <rect x="562" y="73" width="30" height="12.5" rx="6.25" />
+        <rect x="588" y="75" width="30" height="12.5" rx="6.25" />
+
+        <!-- Tier 3 -->
+        <rect x="488" y="88" width="30" height="13" rx="6.5" />
+        <rect x="514" y="86" width="30" height="13" rx="6.5" />
+        <rect x="545" y="85" width="30" height="13" rx="6.5" />
+        <rect x="576" y="86" width="30" height="13" rx="6.5" />
+        <rect x="602" y="88" width="30" height="13" rx="6.5" />
+
+        <!-- Tier 4 -->
+        <rect x="478" y="102" width="30" height="13" rx="6.5" />
+        <rect x="504" y="100" width="30" height="13" rx="6.5" />
+        <rect x="532" y="99" width="28" height="13" rx="6.5" />
+        <rect x="560" y="99" width="28" height="13" rx="6.5" />
+        <rect x="588" y="100" width="30" height="13" rx="6.5" />
+        <rect x="612" y="102" width="30" height="13" rx="6.5" />
+
+        <!-- Tier 5 (Forehead Arch Curls) -->
+        <rect x="472" y="117" width="28" height="13" rx="6.5" />
+        <rect x="496" y="115" width="28" height="13" rx="6.5" />
+        <rect x="522" y="113" width="26" height="13" rx="6.5" />
+        <rect x="547" y="112" width="26" height="13" rx="6.5" />
+        <rect x="572" y="113" width="26" height="13" rx="6.5" />
+        <rect x="596" y="115" width="28" height="13" rx="6.5" />
+        <rect x="620" y="117" width="28" height="13" rx="6.5" />
+      </g>
+
+      <!-- Barrel Side Rolls (Vertical Tiered Columns of Horizontal Curls) -->
+      <!-- Left Side Rolls -->
+      <g fill="url(#wigCurlHoriz)" stroke="#94a3b8" stroke-width="0.7">
+        <rect x="456" y="132" width="40" height="14" rx="7" />
+        <rect x="452" y="148" width="41" height="14" rx="7" />
+        <rect x="450" y="164" width="42" height="14" rx="7" />
+        <rect x="450" y="180" width="42" height="14" rx="7" />
+        <rect x="452" y="196" width="41" height="14" rx="7" />
+        <rect x="456" y="212" width="40" height="14" rx="7" />
+        <rect x="462" y="228" width="36" height="13" rx="6.5" />
+        <rect x="468" y="242" width="30" height="12" rx="6" />
+
+        <!-- Highlight ridges on left curls -->
+        <line x1="462" y1="137" x2="488" y2="137" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="458" y1="153" x2="486" y2="153" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="456" y1="169" x2="484" y2="169" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="456" y1="185" x2="484" y2="185" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="458" y1="201" x2="486" y2="201" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="462" y1="217" x2="488" y2="217" stroke="#ffffff" stroke-width="1.6" />
+      </g>
+
+      <!-- Right Side Rolls -->
+      <g fill="url(#wigCurlHoriz)" stroke="#94a3b8" stroke-width="0.7">
+        <rect x="624" y="132" width="40" height="14" rx="7" />
+        <rect x="627" y="148" width="41" height="14" rx="7" />
+        <rect x="628" y="164" width="42" height="14" rx="7" />
+        <rect x="628" y="180" width="42" height="14" rx="7" />
+        <rect x="627" y="196" width="41" height="14" rx="7" />
+        <rect x="624" y="212" width="40" height="14" rx="7" />
+        <rect x="622" y="228" width="36" height="13" rx="6.5" />
+        <rect x="622" y="242" width="30" height="12" rx="6" />
+
+        <!-- Highlight ridges on right curls -->
+        <line x1="632" y1="137" x2="658" y2="137" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="634" y1="153" x2="662" y2="153" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="636" y1="169" x2="664" y2="169" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="636" y1="185" x2="664" y2="185" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="634" y1="201" x2="662" y2="201" stroke="#ffffff" stroke-width="1.6" />
+        <line x1="632" y1="217" x2="658" y2="217" stroke="#ffffff" stroke-width="1.6" />
+      </g>
+
+      <!-- Wig Back Queue / Ribbon Accent resting onto the robe shoulders -->
+      <path d="M 470 252 C 466 274 476 294 484 310 C 488 300 484 274 480 252 Z" fill="#94a3b8" />
+      <path d="M 650 252 C 654 274 644 294 636 310 C 632 300 636 274 640 252 Z" fill="#94a3b8" />
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- TYPOGRAPHY SECTION                                           -->
+  <!-- Centered / Balanced from X = 980                             -->
+  <!-- ============================================================ -->
+  <g id="brand">
+
+    <!-- Wordmark: "law-checker" (Exact lowercase, hyphenated) -->
+    <g filter="url(#textDropShadow)">
+      <text x="980" y="342" xml:space="preserve">
+        <tspan fill="url(#silverText)" font-family="'Georgia', 'Times New Roman', 'Palatino Linotype', serif" font-size="148" font-weight="700" letter-spacing="-1">law</tspan><tspan fill="url(#goldSheen)" font-family="'Georgia', 'Times New Roman', serif" font-size="148" font-weight="700" letter-spacing="0.5">-</tspan><tspan fill="url(#goldText)" font-family="'Georgia', 'Times New Roman', 'Palatino Linotype', serif" font-size="148" font-weight="700" letter-spacing="-1">checker</tspan>
+      </text>
+    </g>
+
+    <!-- Refined Horizontal Golden Accent Bar -->
+    <g transform="translate(984, 388)">
+      <rect x="0" y="0" width="960" height="2" fill="url(#goldBar)" />
+      <!-- Polished Gold Diamond Accent -->
+      <polygon points="12,-4 18,1 12,6 6,1" fill="#f59e0b" />
+    </g>
+
+    <!-- Tagline: Single clean line from README, high contrast, readable -->
+    <text x="985" y="452" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+          font-size="44" 
+          font-weight="400" 
+          fill="#94a3b8" 
+          letter-spacing="2.6">
+      AI-assisted first-look legal orientation
+    </text>
+  </g>
+</svg>
