@@ -48,3 +48,17 @@ Dieses Dokument erfasst alle nicht-automatisierten oder externen Empfehlungen zu
 
 ### E. Lokale UI-Demo (Gradio / Streamlit)
 - **Empfehlung:** Bereitstellung einer optionalen lokalen Web-Oberfläche (`ui/app.py`), um juristischen Anwendern ohne Terminal- und CLI-Erfahrung die intuitive Nutzung von `law-checker` mit Dropdown-Auswahl der Gesetzbücher zu ermöglichen.
+
+---
+
+## 3. Durchgeführte Maßnahmen Pfad B (Turnus-Audit Stand: 2026-09-19)
+
+- **Target Personas & High-Intent SEO Queries:** Präzise Modellierung von 4 Zielgruppen ([PERSONA-01] Legal Tech Engineers & In-House Legal Ops, [PERSONA-02] Open-Source Maintainers & Indie Developers, [PERSONA-03] AI Agent Developers & Solution Architects, [PERSONA-04] Compliance Officers & DPOs) und Zuordnung konkreter Suchphrasen für organische Auffindbarkeit in Entwickler- und Juristen-Communities.
+- **10-Dimensionale Vergleichsmatrix:** Strukturierte Differenzierung gegenüber 4 Alternativen (Naive LLM-Chats wie ChatGPT/Claude ohne Normbindung, teure proprietäre Datenbanken wie Beck-Online/Juris, klassisches RAG mit Chunk-Verlust und fehleranfällige Websuche) entlang der 10 unverletzlichen Governance-Invarianten.
+- **18-Punkte-Schnellnavigation mit Parität:** Ausbau der Navigation von 14 auf 18 Punkte in beiden Sprachen (`README.md` und `README_de.md`) inklusive reziproker HTML-Anker (`<a id="..."></a>`) zur lückenlosen Abwärtskompatibilität externer Verlinkungen.
+- **Gesetzlicher Haftungshinweis gem. § 521 BGB:** Verankerung des standardisierten Haftungsausschlusses für unentgeltliche Open-Source-Überlassung (Gefälligkeitsrecht) in englischer und deutscher Sprache.
+- **Third-Party License Audit & SBOM:** Bereitstellung von `THIRD_PARTY_LICENSES.md` mit detailliertem SBOM, Invarianten-Matrix (`INV-LOCAL-01` bis `INV-LOCAL-05`), Bestätigung der Gemeinfreiheit amtlicher Gesetzestexte gem. § 5 Abs. 1 UrhG und Zero-Copyleft-Garantie.
+- **Visueller Terminal- und Gutachten-Walkthrough:** Bereitstellung einer strukturierten Text-/Terminal-Visualisierung des 6-teiligen Berichtsformats zur Steigerung der Nutzerführung und Transparenz für Erstnutzer.
+- **Live GitHub Discoverability & Topic Enrichment:** Erweiterung der Repository-Topics auf 20 High-Intent-Schlagworte (`open-bricks`, `zero-egress`, `urhg`, `jurisprudence`, `norm-checking`, `legal-assessment`).
+- **Synchronisation von Manifesten & AI-Index:** Versionsharmonisierung auf `0.2.7` in `pyproject.toml`, `llms.txt` (Last-checked: 2026-09-19), `CHANGELOG.md` und Shields.io Badges.
+- **Vertragstest-Erweiterung:** Erweiterung der Testsuite in `tests/test_metadata.py` um Validierungen für 18-Punkte-Navigation, Persona- und Matrix-Präsenz, SBOM-Existenz, § 521 BGB-Klausel und PEP 621 URLs.

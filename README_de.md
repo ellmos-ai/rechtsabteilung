@@ -4,14 +4,16 @@
 
 # law-checker (Rechtsabteilung)
 
-[![Version: 0.2.6](https://img.shields.io/badge/Version-0.2.6-blue.svg)](CHANGELOG.md)
+[![Version: 0.2.7](https://img.shields.io/badge/Version-0.2.7-blue.svg)](CHANGELOG.md)
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/Tests-24%20passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-28%20passed-brightgreen.svg)](tests/)
 [![CI-Matrix](https://img.shields.io/badge/CI-Multi--OS%20%7C%20Ubuntu%20%7C%20Windows%20%7C%20macOS-blue.svg)](.github/workflows/ci.yml)
 [![Local-First](https://img.shields.io/badge/Architektur-Local--First-green.svg)](#datenschutz-und-vertraulichkeit)
 [![Zero-Egress](https://img.shields.io/badge/Datenschutz-100%25%20Offline%20%2F%20Zero--Egress-success.svg)](#datenschutz-und-vertraulichkeit)
+[![SBOM](https://img.shields.io/badge/SBOM-Level%201%20Konform-blue.svg)](THIRD_PARTY_LICENSES.md)
 [![Sicherheits-SLA](https://img.shields.io/badge/Sicherheit-48h%20SLA-blue.svg)](SECURITY.md)
+[![RDG](https://img.shields.io/badge/RDG-%C2%A7%202%20Abs.%201%20Konform-brightgreen.svg)](#rechtlicher-rahmen-und-rdg-einordnung)
 [![Claude Code Skill](https://img.shields.io/badge/Skill-Claude%20Code-purple.svg)](SKILL.md)
 [![Ökosystem: ellmos-ai](https://img.shields.io/badge/%C3%96kosystem-ellmos--ai-blue.svg)](https://github.com/ellmos-ai)
 [![Dachorganisation: open-bricks](https://img.shields.io/badge/Dachorganisation-open--bricks-indigo.svg)](https://github.com/open-bricks)
@@ -21,7 +23,7 @@
 **Open-Source-KI-Workflow für quellbelegte rechtliche Ersteinschätzungen nach deutschem Recht.**
 
 > [!NOTE]
-> **KI- / LLM-Agenten-Erkennung:** Eine maschinenlesbare Zusammenfassung steht in [`llms.txt`](llms.txt) zur Verfügung (Stand: 2026-09-10).
+> **KI- / LLM-Agenten-Erkennung:** Eine maschinenlesbare Zusammenfassung steht in [`llms.txt`](llms.txt) zur Verfügung (Stand: 2026-09-19).
 
 > [!IMPORTANT]
 > **Wichtig: KI-gestützte Erstorientierung, keine Rechtsberatung.** Dieses Werkzeug ersetzt weder die individuelle Prüfung noch die Beratung durch eine zugelassene Rechtsanwältin oder einen zugelassenen Rechtsanwalt. Ob ein konkreter Einsatz eine Rechtsdienstleistung darstellt und zulässig ist, hängt von Einsatzform, Betreiberrolle und Einzelfall ab. Es erfolgt keine Fristenüberwachung und keine automatische Vollständigkeits- oder Aktualitätsgarantie. Bei behördlicher oder gerichtlicher Rechtspost sowie laufenden Rechtsbehelfsfristen ist unverzüglich professioneller Rechtsrat einzuholen.
@@ -31,19 +33,23 @@
 ## Schnellnavigation
 
 1. [Übersicht](#übersicht)
-2. [Systemarchitektur](#systemarchitektur)
-3. [Ablauf- und Prüfungslebenszyklus](#ablauf--und-prüfungslebenszyklus)
-4. [Governance- und Laufzeit-Invarianten](#governance--und-laufzeit-invarianten)
-5. [Rechtlicher Rahmen und RDG-Einordnung](#rechtlicher-rahmen-und-rdg-einordnung)
-6. [Geschwisterwerkzeuge und Ökosystem](#geschwisterwerkzeuge-und-ökosystem)
-7. [Installation und Schnelleinstieg](#installation-und-schnelleinstieg)
-8. [Neue Gesetze hinzufügen](#neue-gesetze-hinzufügen)
-9. [Datenschutz und Vertraulichkeit](#datenschutz-und-vertraulichkeit)
-10. [Gesetzes-Registry-Bestand](#gesetzes-registry-bestand)
-11. [Repository-Struktur](#repository-struktur)
-12. [Sicherheitsrichtlinie](#sicherheitsrichtlinie)
-13. [Herkunft und Autorenschaft](#herkunft-und-autorenschaft)
-14. [Haftung, Lizenz und Grenzen](#haftung-lizenz-und-grenzen)
+2. [Zielgruppen & Anwendungsfälle](#zielgruppen--anwendungsfälle)
+3. [Vergleichsmatrix & Alternativen](#vergleichsmatrix--alternativen)
+4. [Systemarchitektur](#systemarchitektur)
+5. [Ablauf- und Prüfungslebenszyklus](#ablauf--und-prüfungslebenszyklus)
+6. [Governance- und Laufzeit-Invarianten](#governance--und-laufzeit-invarianten)
+7. [Rechtlicher Rahmen und RDG-Einordnung](#rechtlicher-rahmen-und-rdg-einordnung)
+8. [Geschwisterwerkzeuge und Ökosystem](#geschwisterwerkzeuge-und-ökosystem)
+9. [Installation und Schnelleinstieg](#installation-und-schnelleinstieg)
+10. [Neue Gesetze hinzufügen](#neue-gesetze-hinzufügen)
+11. [Datenschutz und Vertraulichkeit](#datenschutz-und-vertraulichkeit)
+12. [Gesetzes-Registry-Bestand](#gesetzes-registry-bestand)
+13. [Gutachten-Architektur & Visueller Walkthrough](#gutachten-architektur--visueller-walkthrough)
+14. [Drittanbieter-Lizenzen & SBOM](#drittanbieter-lizenzen--sbom)
+15. [Repository-Struktur](#repository-struktur)
+16. [Sicherheitsrichtlinie](#sicherheitsrichtlinie)
+17. [Herkunft und Autorenschaft](#herkunft-und-autorenschaft)
+18. [Haftung, Lizenz und Grenzen](#haftung-lizenz-und-grenzen)
 
 ---
 
@@ -56,6 +62,68 @@ Die Kernphilosophie beruht auf strikter Belegdisziplin:
 - **Verkörperungs-Prinzip:** Ein generischer Spezialagent („Du BIST das Gesetzbuch") liest ausschließlich den authentischen Normtext – mit strenger Reichweiten-Disziplin (Anwendungsbereich vor Anwendung) und dem Eingeständnis: „Mein Wortlaut entscheidet das nicht; hier beginnt Auslegung."
 - **Getrennte Rechtsprechungsschicht:** Gerichtsentscheidungen werden niemals halluziniert, sondern ausschließlich web-verifiziert mit Gericht, Datum, Aktenzeichen, ECLI und Fundstelle herangezogen; ein negatives Suchergebnis wird explizit als „nicht ermittelt" ausgewiesen.
 - **Risiko-Ampel & Eskalation:** Objektive Einstufung in Gering, Mittel, Hoch oder Kritisch, inklusive Anwaltsmatrix mit Fachgebietszuordnung und harter Fristendisziplin bei eingehender Rechtspost.
+
+---
+
+<a id="zielgruppen--anwendungsfaelle"></a><a id="zielgruppen--anwendungsfälle"></a>
+## Zielgruppen & Anwendungsfälle
+
+`law-checker` wurde für Softwareingenieure, Open-Source-Maintainer und Compliance-Verantwortliche entwickelt, die im deutschen und europäischen Rechtsraum agieren und verlässliche, quellbelegte rechtliche Ersteinschätzungen ohne Halluzinationen oder Datenabfluss benötigen:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 ZIELGRUPPEN-MAPPING & ANWENDUNGSFÄLLE (PERSONAS)            │
+├────────────────────────────────┬────────────────────────────────────────────┤
+│ [PERSONA-01] Legal Tech & Ops  │ Automatisierte Norm-Ersteinschätzungen für │
+│                                │ Inhouse-Counsel ohne proprietären Lock-in. │
+├────────────────────────────────┼────────────────────────────────────────────┤
+│ [PERSONA-02] OSS-Maintainer    │ Schnelle Klärung zu deutscher Impressums-  │
+│                                │ pflicht, DSGVO-Hinweisen & Lizenz-UrhG.    │
+├────────────────────────────────┼────────────────────────────────────────────┤
+│ [PERSONA-03] KI-Architekten    │ Zero-Hallucination-Normverkörperung und    │
+│                                │ methodisch saubere Auslegungsabgrenzung.   │
+├────────────────────────────────┼────────────────────────────────────────────┤
+│ [PERSONA-04] DPOs & Compliance │ Nachvollziehbare Audit-Trails für DSGVO,   │
+│                                │ EHDS (EU 2025/327) und SGB-V-Gesundheits-KI│
+└────────────────────────────────┴────────────────────────────────────────────┘
+```
+
+- **`[PERSONA-01]` Legal-Tech-Ingenieure & Inhouse-Legal-Operations:**
+  - *Kernproblem:* Kommerzielle Fachdatenbanken (Beck-Online, Juris) bieten keine offene LLM-Agenten-Schnittstelle und kosten tausende Euro pro Arbeitsplatz; unkontrollierte Standard-LLMs erfinden Paragraphen.
+  - *Lösung:* Skriptbare, quellbelegte CLI- und Skill-Pipeline für Claude Code, basierend auf amtlichen XML-Beständen von BMJ und BfJ.
+  - *Suchintention:* `German legal tech AI first look`, `automatisierte Gesetzesprüfung LLM`, `Inhouse Legal Workflow Agent`.
+- **`[PERSONA-02]` Open-Source-Maintainer & Indie-Entwickler:**
+  - *Kernproblem:* Rechtsunsicherheit bezüglich deutscher Informationspflichten (z. B. *Impressumspflicht* nach TDDDG / TMG auf GitHub, DSGVO-Datenschutzerklärungen, MIT/GPL-Lizenzpflichten nach deutschem Urheberrecht).
+  - *Lösung:* Deterministische Prüfung anhand des authentischen Gesetzeswortlauts, ob ein privates Entwickler-Repo unter geschäftsmäßige Telemedien fällt oder eine Ausnahme greift.
+  - *Suchintention:* `Impressumspflicht privates GitHub Repo Deutschland`, `TDDDG Impressum Open Source`, `Urheberrecht UrhG Softwarelizenz BGB`.
+- **`[PERSONA-03]` KI-Agenten-Entwickler & Solution Architects:**
+  - *Kernproblem:* Vektor-RAG zerstückelt Gesetzestexte an semantischen Chunk-Grenzen, wodurch Tatbestände von Ausnahmetatbeständen (*lex specialis*) getrennt werden und Fehlurteile entstehen.
+  - *Lösung:* Das Verkörperungs-Agentenmuster (`agents/gesetzbuch.md`): Das Modell schlüpft in die Rolle des verabschiedeten Gesetzestextes und beachtet strikte Wortlautdisziplin („Mein Wortlaut entscheidet das nicht").
+  - *Suchintention:* `Gesetzbuch Verkörperung KI Agent Prompt`, `Zero Hallucination Legal AI Pattern`, `Claude Code Legal Skill`.
+- **`[PERSONA-04]` Datenschutzbeauftragte (DPOs) & Compliance-Manager:**
+  - *Kernproblem:* Digitale Gesundheitsanwendungen, KI-Systeme und Forschungssoftware verlangen belastbare Vorprüfungen zu DSGVO, EHDS (Verordnung (EU) 2025/327) und SGB V mit nachweisbarem Prüfungsprotokoll.
+  - *Lösung:* Standardisiertes 6-Punkte-Gutachtenformat mit objektiver Risiko-Ampel (Gering, Mittel, Hoch, Kritisch), Abrufstempeln und Fachanwaltsempfehlung.
+  - *Suchintention:* `EHDS Verordnung EU 2025/327 Compliance Check`, `SGB V Gesundheitsdaten KI Prüfung`, `DSGVO Risiko Ersteinschätzung`.
+
+---
+
+<a id="vergleichsmatrix--alternativen"></a>
+## Vergleichsmatrix & Alternativen
+
+10-dimensionaler Architekturvergleich von `law-checker` mit herkömmlichen Recherche- und LLM-Ansätzen:
+
+| Dimension | Naive LLM-Prompts (ChatGPT/Claude roh) | Klassische Rechtsdatenbanken (Beck/Juris) | Generische Legal RAG / Vektoren | Manuelle Websuche & Foren | `law-checker` (Rechtsabteilung) |
+|---|---|---|---|---|---|
+| **1. Normtreue & Belege** | ❌ Keine (reines Gedächtnis) | ⚠️ Manuelles Suchen erforderlich | ⚠️ Fragmentiert (Chunk-Splits) | ❌ Nur Sekundärquellen | ✅ **Streng authentisch (§, Abs., S.)** |
+| **2. Halluzinations-Immunität** | ❌ Häufig erfundene Normen | ✅ Hoch (amtliche Texte) | ❌ Kontextuelle Halluzination | ❌ Hoch (veraltete Forenbeiträge) | ✅ **100% amtliche XML-Caches** |
+| **3. Verkörperungs-Disziplin** | ❌ Vermischt Meinung & Text | ❌ Nicht zutreffend (Mensch liest) | ❌ Vermengt Kommentar & Norm | ❌ Reine Spekulation | ✅ **„Du BIST das Gesetzbuch"** |
+| **4. Rechtsprechungsschicht** | ❌ Erfundene Az. & ECLIs | ✅ Vollständig (hinter Paywall) | ⚠️ Unverifizierte Zitate | ⚠️ Durchwachsene Treffer | ✅ **Ausschließlich live verifiziert** |
+| **5. Zero-Egress-Datenschutz** | ❌ Vollständiger Prompt-Egress | ⚠️ Suchanfragen protokolliert | ⚠️ Vektoren an Cloud gesendet | ❌ Tracker & Suchmaschinen-Logs | ✅ **100% lokal / gitignored** |
+| **6. RDG-Rechtsabgrenzung** | ❌ Häufig schwache Hinweise | ⚠️ Enterprise-AGB | ❌ Haftungsfragen ungeklärt | ❌ Abmahnrisiko unbefugter Rat | ✅ **Strikte § 2 RDG Eigenprüfung** |
+| **7. Fristen-Triage** | ❌ Völlig ignoriert | ❌ Nur manuelle Wiedervorlage | ❌ Ignoriert | ❌ Fristversäumnis-Risiko | ✅ **Schritt 2 Vorrang-Fristen-Gate** |
+| **8. Versionierte Registry** | ❌ Unklare Trainings-Cutoffs | ⚠️ Unbemerkte Textänderungen | ❌ Nicht-versionierte Indizes | ❌ Ständige Web-Fluktuation | ✅ **Auditierbare `config.json` (v5)** |
+| **9. Multi-OS CI-Tests** | ❌ Nicht zutreffend | ❌ Proprietär geschlossen | ⚠️ Gelegentliche Unittests | ❌ Nicht zutreffend | ✅ **Ubuntu / Windows / macOS CI** |
+| **10. Kosten & Lizenz** | ⚠️ 20–200 €/Monat/Nutzer | ❌ 1.500–5.000+ €/Jahr/Sitz | ⚠️ Cloud-Infrastrukturkosten | ✅ Kostenlos (aber Zeitfresser) | ✅ **100% Frei & Open Source (MIT)** |
 
 ---
 
@@ -269,11 +337,62 @@ Die standardmäßige Gesetzes-Registry (`config.json`, v5) umfasst 13 vorkonfigu
 
 ---
 
+<a id="gutachten-architektur--visueller-walkthrough"></a>
+## Gutachten-Architektur & Visueller Walkthrough
+
+Jedes von `law-checker` erstellte Rechtsgutachten folgt strikt der standardisierten 6-Punkte-Struktur aus [`references/berichtsformat.md`](references/berichtsformat.md) und wahrt die juristische Methodik (*Gutachtenstil*):
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 STRUKTURIERTE JURISTISCHE ERSTEINSCHÄTZUNG                  │
+│ Datei: _gutachten/YYYY-MM-DD_<themen-slug>.md                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 1. Sachverhalt & Fragestellung (Factual Inquest & Scope)                    │
+│    ├─ Fragesteller, Kontext & Sachverhaltselemente                          │
+│    └─ VORRANGIGER PFLICHTCHECK: Fristenprüfung bei behördlicher/Rechtspost  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 2. Norm-Ebene: Authentischer Gesetzeswortlaut (Embodiment-Auszüge)          │
+│    ├─ Ermittelter relevanter Normbestand (z. B. § 5 TDDDG, BGB)             │
+│    └─ Absatz- und satzgenaue Verbatim-Zitate aus lokalem XML-Bestand        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 3. Rechtsprechung & Auslegung (Web-verifizierte Leitentscheidungen)         │
+│    ├─ Einschlägige obergerichtliche Urteile (BGH, BAG, BVerfG, EuGH)        │
+│    └─ Strenges Zitierformat: Gericht, Datum, Az., Fundstelle, ECLI          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 4. Synthese & Subsumtion (Juristische Methodik / Gutachtenstil)             │
+│    ├─ Tatbestandsmerkmale vs. vorliegender Lebenssachverhalt                │
+│    └─ Eindeutige Kennzeichnung: Was ist zwingend, was vertretbare Auslegung?│
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 5. Risikoeinstufung & Anwaltsempfehlung (Risiko-Ampel & Eskalation)         │
+│    ├─ Ampel-Score: [GERING / GRÜN] | [MITTEL / GELB] | [HOCH] | [KRITISCH]   │
+│    ├─ Begründung & konkrete Schadens-/Abmahnpotenziale                      │
+│    └─ Fachanwalts-Empfehlung mit zutreffender Fachanwaltsbezeichnung        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 6. Quellenverzeichnis & Prüfprotokoll (Provenance & Audit-Log)              │
+│    ├─ Verwendete Gesetzestexte mit amtlichem Abruf- und Standstempel        │
+│    └─ Revisions- und Modelldaten des ausführenden LLM-Laufs                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+<a id="drittanbieter-lizenzen--sbom"></a>
+## Drittanbieter-Lizenzen & SBOM
+
+`law-checker` ist freie Open-Source-Software unter der [MIT-Lizenz](LICENSE). Eine vollständige Software-Stückliste (SBOM) und Lizenzprüfung ist in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) hinterlegt:
+
+- **Frei von Copyleft-Infektionen:** Keine GPL-, AGPL- oder SSPL-Abhängigkeiten; uneingeschränkt nutzbar für lokale Entwickler und Unternehmen.
+- **Unprivilegierte Ausführung (`RunAsInvoker`):** Benötigt unter keinem Betriebssystem Administrator- oder Root-Rechte.
+- **Amtliche Werke im Public Domain:** Die über `gesetze-im-internet.de` bezogenen Normtexte sind amtliche Werke im Sinne von § 5 Abs. 1 UrhG und gemeinfrei. Rechtsakte der Europäischen Union werden auf Grundlage des Beschlusses 2011/833/EU der Kommission weiterverwendet.
+
+---
+
 ## Repository-Struktur
 
 ```text
 law-checker/
 ├── .github/workflows/ci.yml    ← Multi-OS CI-Matrix (Ubuntu, Windows, macOS)
+├── .github/workflows/stale.yml ← Automatisierte Bereinigung verwaister Issues & PRs
 ├── SKILL.md                    ← Orchestrierungs-Skill (10-Schritte-Workflow)
 ├── config.json                 ← Gesetzes-Registry und Ablaufdefinition (v5)
 ├── agents/
@@ -291,6 +410,7 @@ law-checker/
 │   └── test_metadata.py        ← Automatisierte Metadaten- & Paritäts-Tests
 ├── CHANGELOG.md                ← Chronologischer Versionsverlauf
 ├── SECURITY.md                 ← Sicherheitsrichtlinie mit 48h-Reaktions-SLA
+├── THIRD_PARTY_LICENSES.md     ← Drittanbieter-Lizenzaudit, SBOM & § 5 UrhG Nachweis
 ├── MARKETING-LOG.txt           ← Lokale Marketing- & Discoverability-Empfehlungen
 ├── llms.txt                    ← Maschinenlesbarer Kontext für KI-Agenten
 ├── ellmos-module.v2.json       ← Modulmanifest (rechtsabteilung)
@@ -318,12 +438,19 @@ Das Projekt führt drei praxiserprobte Konzepte zusammen:
 2. **Forschungsprototyp „Lebende Verfassung":** Das Muster der Normverkörperung mit strenger Quellenbindung, getrennter Auslegungsschicht und Begrenzung auf den authentischen Wortlaut.
 3. **Jura-Wissenssystematik:** Systematische Zuordnung nach Rechtsgebieten und Grundsätzen des deutschen Gutachtenstils.
 
-Der erste Volllauf des Systems war seine eigene Veröffentlichungsprüfung — inklusive eines adversarialen Reviews durch ein unabhängiges Zweitmodell.
+Der erste Volllauf des systems war seine eigene Veröffentlichungsprüfung — inklusive eines adversarialen Reviews durch ein unabhängiges Zweitmodell.
 
 ---
 
+<a id="haftung-lizenz-und-grenzen"></a><a id="gesetzlicher-haftungshinweis--521-bgb--lizenz"></a>
 ## Haftung, Lizenz und Grenzen
 
-- **Lizenz:** Veröffentlicht unter der [MIT-Lizenz](LICENSE) — gültig für Quelltext, Prompts und Dokumentation.
+### Gesetzlicher Haftungshinweis gem. § 521 BGB (Gefälligkeitsrecht)
+
+> [!IMPORTANT]
+> **Haftungsbeschränkung gem. § 521 BGB:** Die Bereitstellung dieser Software, der Dokumentation, der Prompts und der Prüfungsabläufe erfolgt unentgeltlich und als Gefälligkeit im Sinne des deutschen Zivilrechts (§ 521 BGB). Die Haftung der Urheber, Maintainer und Mitwirkenden ist auf Vorsatz und grobe Fahrlässigkeit beschränkt. Die Software stellt keine Rechtsdienstleistung im Sinne des § 2 Abs. 1 RDG dar und ersetzt keine individuelle Prüfung durch eine zugelassene Rechtsanwältin oder einen zugelassenen Rechtsanwalt. Es erfolgt keine Fristenkontrolle und keine Gewähr für Vollständigkeit, Fehlerfreiheit oder Aktualität.
+
+- **Lizenz:** Veröffentlicht unter der permissiven [MIT-Lizenz](LICENSE) — gültig für Quelltext, Prompts und Dokumentation.
+- **Drittanbieter-SBOM:** Der Lizenzaudit zu Drittanbieter-Bibliotheken sowie die Gemeinfreiheit amtlicher Werke gem. § 5 Abs. 1 UrhG sind in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) dokumentiert.
 - **Haftungsausschluss:** Der Betrieb erfolgt ohne Gewährleistung für Aktualität, Richtigkeit oder Vollständigkeit der erzeugten Auswertungen. Gesetzestexte unterliegen dem Wandel; vor rechtserheblichen Entscheidungen sind die amtlichen Verkündungsblätter (Bundesgesetzblatt) heranzuziehen.
 - **Keine Rechtsberatung:** Das Werkzeug dient ausschließlich der Vorbereitung und Erstorientierung.

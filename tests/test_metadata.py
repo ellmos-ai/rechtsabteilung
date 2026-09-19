@@ -82,7 +82,7 @@ def test_pyproject_pep621_metadata():
 
 
 def test_pyproject_ecosystem_urls():
-    """Verify PEP 621 [project.urls] include parent org, umbrella, security, and repository."""
+    """Verify PEP 621 [project.urls] include parent org, umbrella, security, licenses, and repository."""
     data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
     urls = data.get("project", {}).get("urls", {})
 
@@ -93,6 +93,9 @@ def test_pyproject_ecosystem_urls():
         "Changelog": "https://github.com/ellmos-ai/law-checker/blob/main/CHANGELOG.md",
         "Issues": "https://github.com/ellmos-ai/law-checker/issues",
         "Security": "https://github.com/ellmos-ai/law-checker/blob/main/SECURITY.md",
+        "Third-Party Licenses": "https://github.com/ellmos-ai/law-checker/blob/main/THIRD_PARTY_LICENSES.md",
+        "Marketing Log": "https://github.com/ellmos-ai/law-checker/blob/main/MARKETING-LOG.txt",
+        "LLM Ready": "https://raw.githubusercontent.com/ellmos-ai/law-checker/main/llms.txt",
         "Parent Organization": "https://github.com/ellmos-ai",
         "Umbrella Ecosystem": "https://github.com/open-bricks",
     }
@@ -144,13 +147,14 @@ def test_llms_txt_structure_and_date():
     assert llms_path.is_file(), "llms.txt must exist"
 
     content = llms_path.read_text(encoding="utf-8")
-    assert "## Last-checked: 2026-09-10" in content, "llms.txt Last-checked date must be 2026-09-10"
+    assert "## Last-checked: 2026-09-19" in content, "llms.txt Last-checked date must be 2026-09-19"
     assert "README.md" in content
     assert "README_de.md" in content
     assert "SKILL.md" in content
     assert "config.json" in content
     assert "SECURITY.md" in content
     assert "CHANGELOG.md" in content
+    assert "THIRD_PARTY_LICENSES.md" in content
 
 
 def test_readme_bilingual_and_badges():
@@ -165,10 +169,11 @@ def test_readme_bilingual_and_badges():
     assert "Umbrella-open--bricks" in content
     assert "License-MIT" in content
     assert "llms.txt" in content
+    assert "THIRD_PARTY_LICENSES.md" in content
 
 
 def test_readme_bilingual_parity_and_navigation():
-    """Verify 14-point quick navigation parity and language switchers across README.md and README_de.md."""
+    """Verify 18-point quick navigation parity and language switchers across README.md and README_de.md."""
     readme_en = ROOT / "README.md"
     readme_de = ROOT / "README_de.md"
     assert readme_en.is_file(), "README.md must exist"
@@ -181,9 +186,11 @@ def test_readme_bilingual_parity_and_navigation():
     assert "**English** | [Deutsch](README_de.md)" in text_en, "README.md missing language switcher"
     assert "[English](README.md) | **Deutsch**" in text_de, "README_de.md missing language switcher"
 
-    # 14 English anchors
+    # 18 English anchors
     en_expected_anchors = [
         "#overview",
+        "#target-personas--high-intent-use-cases",
+        "#comparative-architecture-matrix",
         "#system-architecture",
         "#workflow-lifecycle",
         "#governance--runtime-invariants",
@@ -193,17 +200,21 @@ def test_readme_bilingual_parity_and_navigation():
         "#adding-new-statutes",
         "#data-privacy--confidentiality",
         "#statute-registry-inventory",
+        "#report-architecture--visual-walkthrough",
+        "#third-party-licenses--sbom",
         "#repository-layout",
         "#security-policy",
         "#provenance--authorship",
-        "#license--disclaimers",
+        "#statutory-disclaimer--521-bgb--license",
     ]
     for anchor in en_expected_anchors:
         assert f"]({anchor})" in text_en, f"README.md missing navigation anchor: {anchor}"
 
-    # 14 German anchors
+    # 18 German anchors
     de_expected_anchors = [
         "#übersicht",
+        "#zielgruppen--anwendungsfälle",
+        "#vergleichsmatrix--alternativen",
         "#systemarchitektur",
         "#ablauf--und-prüfungslebenszyklus",
         "#governance--und-laufzeit-invarianten",
@@ -213,6 +224,8 @@ def test_readme_bilingual_parity_and_navigation():
         "#neue-gesetze-hinzufügen",
         "#datenschutz-und-vertraulichkeit",
         "#gesetzes-registry-bestand",
+        "#gutachten-architektur--visueller-walkthrough",
+        "#drittanbieter-lizenzen--sbom",
         "#repository-struktur",
         "#sicherheitsrichtlinie",
         "#herkunft-und-autorenschaft",
@@ -355,4 +368,43 @@ def test_changelog_release_entry():
     pyproject_data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
     version = pyproject_data["project"]["version"]
     changelog_text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
-    assert f"## {version} — 2026-09-10" in changelog_text, f"Missing release entry for {version} — 2026-09-10"
+    assert f"## {version} — 2026-09-19" in changelog_text, f"Missing release entry for {version} — 2026-09-19"
+
+
+def test_target_personas_and_comparative_matrix():
+    """Verify both READMEs feature target personas [PERSONA-01] to [PERSONA-04] and comparative matrix."""
+    for readme_name in ["README.md", "README_de.md"]:
+        content = (ROOT / readme_name).read_text(encoding="utf-8")
+        for persona_tag in ["[PERSONA-01]", "[PERSONA-02]", "[PERSONA-03]", "[PERSONA-04]"]:
+            assert persona_tag in content, f"{readme_name} missing persona: {persona_tag}"
+        assert "Comparative Architecture Matrix" in content or "Vergleichsmatrix & Alternativen" in content
+        assert "Beck/Juris" in content
+
+
+def test_statutory_bgb_521_disclaimer():
+    """Verify statutory § 521 BGB disclaimer is declared in both READMEs."""
+    for readme_name in ["README.md", "README_de.md"]:
+        content = (ROOT / readme_name).read_text(encoding="utf-8")
+        assert "§ 521 BGB" in content, f"{readme_name} missing § 521 BGB statutory disclaimer"
+        assert "Gefälligkeit" in content, f"{readme_name} missing Gefälligkeit mention"
+
+
+def test_third_party_licenses_file():
+    """Verify THIRD_PARTY_LICENSES.md exists, contains runtime dependencies and UrhG notice."""
+    tpl_path = ROOT / "THIRD_PARTY_LICENSES.md"
+    assert tpl_path.is_file(), "THIRD_PARTY_LICENSES.md must exist in root"
+    content = tpl_path.read_text(encoding="utf-8")
+    assert "requests" in content
+    assert "urllib3" in content
+    assert "§ 5 Abs. 1 UrhG" in content
+    assert "Amtliche Werke" in content
+    assert "INV-LOCAL-01" in content
+
+
+def test_pyproject_license_files():
+    """Verify pyproject.toml includes LICENSE and THIRD_PARTY_LICENSES.md in license-files."""
+    pyproject_data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    license_files = pyproject_data.get("project", {}).get("license-files", [])
+    assert "LICENSE" in license_files
+    assert "THIRD_PARTY_LICENSES.md" in license_files
+

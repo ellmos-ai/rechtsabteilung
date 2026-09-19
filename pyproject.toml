@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "law-checker"
-version = "0.2.6"
+version = "0.2.7"
 description = "Source-grounded legal first-look skill and statute registry workflow for German law."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
 authors = [
     { name = "ellmos-ai" }
 ]
@@ -21,7 +21,14 @@ keywords = [
     "local-first",
     "rdg-self-use",
     "legal-first-look",
-    "law-checker"
+    "law-checker",
+    "legaltech",
+    "compliance",
+    "bgb",
+    "gdpr",
+    "open-bricks",
+    "zero-egress",
+    "source-grounded-ai"
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -61,6 +68,9 @@ Issues = "https://github.com/ellmos-ai/law-checker/issues"
 Security = "https://github.com/ellmos-ai/law-checker/blob/main/SECURITY.md"
 "Parent Organization" = "https://github.com/ellmos-ai"
 "Umbrella Ecosystem" = "https://github.com/open-bricks"
+"Third-Party Licenses" = "https://github.com/ellmos-ai/law-checker/blob/main/THIRD_PARTY_LICENSES.md"
+"Marketing Log" = "https://github.com/ellmos-ai/law-checker/blob/main/MARKETING-LOG.txt"
+"LLM Ready" = "https://raw.githubusercontent.com/ellmos-ai/law-checker/main/llms.txt"
 
 [tool.setuptools.packages.find]
 where = ["."]

@@ -1,8 +1,8 @@
-## Last-checked: 2026-09-10
+## Last-checked: 2026-09-19
 
 # ellmos-ai/law-checker
 
-- Version: 0.2.6
+- Version: 0.2.7
 - Status: Active
 - License: MIT
 - Ecosystem: ellmos-ai / open-bricks
@@ -29,8 +29,8 @@ environment such as Claude Code.
 
 ## Key Files
 
-- `README.md` - public overview in English, 14-point navigation, system architecture, sequence diagram, and invariants
-- `README_de.md` - vollständige deutsche Dokumentation mit 100% Parität und Schnellnavigation
+- `README.md` - public overview in English, 18-point navigation, target personas, comparative matrix, system architecture, sequence diagram, and invariants
+- `README_de.md` - vollständige deutsche Dokumentation mit 100% Parität, 18-Punkte-Schnellnavigation, Zielgruppen und Vergleichsmatrix
 - `SKILL.md` - orchestration workflow for the legal first-look skill
 - `config.json` - statute registry and workflow configuration
 - `agents/gesetzbuch.md` - generic statute embodiment agent
@@ -39,6 +39,7 @@ environment such as Claude Code.
 - `_tools/gesetze_fetch.py` - fetches official statute texts into local ignored data files
 - `docs/ai-act-note.md` - EU AI Act self-classification note
 - `SECURITY.md` - confidentiality of case material, cloud-LLM exposure, reporting path
+- `THIRD_PARTY_LICENSES.md` - third-party software bill of materials, license inventory and statutory public domain classification
 - `CHANGELOG.md` - release history including statute-registry versions
 
 ## Statute Registry

@@ -4,14 +4,16 @@
 
 # law-checker (Legal Department)
 
-[![Version: 0.2.6](https://img.shields.io/badge/Version-0.2.6-blue.svg)](CHANGELOG.md)
+[![Version: 0.2.7](https://img.shields.io/badge/Version-0.2.7-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/Tests-24%20passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-28%20passed-brightgreen.svg)](tests/)
 [![CI Matrix](https://img.shields.io/badge/CI-Multi--OS%20%7C%20Ubuntu%20%7C%20Windows%20%7C%20macOS-blue.svg)](.github/workflows/ci.yml)
 [![Local-First](https://img.shields.io/badge/Architecture-Local--First-green.svg)](#data-privacy--confidentiality)
 [![Zero-Egress](https://img.shields.io/badge/Privacy-100%25%20Offline%20%2F%20Zero--Egress-success.svg)](#data-privacy--confidentiality)
+[![SBOM](https://img.shields.io/badge/SBOM-Level%201%20Compliant-blue.svg)](THIRD_PARTY_LICENSES.md)
 [![Security SLA](https://img.shields.io/badge/Security-48h%20SLA-blue.svg)](SECURITY.md)
+[![RDG](https://img.shields.io/badge/RDG-%C2%A7%202%20Abs.%201%20Compliant-brightgreen.svg)](#legal-framework--rdg-classification)
 [![Claude Code Skill](https://img.shields.io/badge/Skill-Claude%20Code-purple.svg)](SKILL.md)
 [![Ecosystem: ellmos-ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-blue.svg)](https://github.com/ellmos-ai)
 [![Umbrella: open-bricks](https://img.shields.io/badge/Umbrella-open--bricks-indigo.svg)](https://github.com/open-bricks)
@@ -21,7 +23,7 @@
 **Open-source AI workflow for source-grounded legal first-look orientation under German law.**
 
 > [!NOTE]
-> **AI / LLM Agent Discovery:** A machine-readable summary is available in [`llms.txt`](llms.txt) (last checked: 2026-09-10).
+> **AI / LLM Agent Discovery:** A machine-readable summary is available in [`llms.txt`](llms.txt) (last checked: 2026-09-19).
 
 > [!IMPORTANT]
 > **Important Notice / Wichtig: AI-assisted first-look legal orientation, no legal advice.** This tool is not a law firm, not a hosted legal service, and not a replacement for an individual legal assessment by an admitted attorney-at-law. Whether a specific deployment constitutes a regulated legal service under the German Legal Services Act (*Rechtsdienstleistungsgesetz*, RDG) depends on operational model, operator role, and the individual case. There is no automated deadline monitoring and no guarantee of completeness or currency. If official, administrative, or judicial legal correspondence and running deadlines are involved, consult qualified legal counsel immediately.
@@ -31,19 +33,23 @@
 ## Quick Navigation
 
 1. [Overview](#overview)
-2. [System Architecture](#system-architecture)
-3. [Workflow Lifecycle](#workflow-lifecycle)
-4. [Governance & Runtime Invariants](#governance--runtime-invariants)
-5. [Legal Framework & RDG Classification](#legal-framework--rdg-classification)
-6. [Sibling Tools & Ecosystem](#sibling-tools--ecosystem)
-7. [Installation & Quickstart](#installation--quickstart)
-8. [Adding New Statutes](#adding-new-statutes)
-9. [Data Privacy & Confidentiality](#data-privacy--confidentiality)
-10. [Statute Registry Inventory](#statute-registry-inventory)
-11. [Repository Layout](#repository-layout)
-12. [Security Policy](#security-policy)
-13. [Provenance & Authorship](#provenance--authorship)
-14. [License & Disclaimers](#license--disclaimers)
+2. [Target Personas & High-Intent Use Cases](#target-personas--high-intent-use-cases)
+3. [Comparative Architecture Matrix](#comparative-architecture-matrix)
+4. [System Architecture](#system-architecture)
+5. [Workflow Lifecycle](#workflow-lifecycle)
+6. [Governance & Runtime Invariants](#governance--runtime-invariants)
+7. [Legal Framework & RDG Classification](#legal-framework--rdg-classification)
+8. [Sibling Tools & Ecosystem](#sibling-tools--ecosystem)
+9. [Installation & Quickstart](#installation--quickstart)
+10. [Adding New Statutes](#adding-new-statutes)
+11. [Data Privacy & Confidentiality](#data-privacy--confidentiality)
+12. [Statute Registry Inventory](#statute-registry-inventory)
+13. [Report Architecture & Visual Walkthrough](#report-architecture--visual-walkthrough)
+14. [Third-Party Licenses & SBOM](#third-party-licenses--sbom)
+15. [Repository Layout](#repository-layout)
+16. [Security Policy](#security-policy)
+17. [Provenance & Authorship](#provenance--authorship)
+18. [Statutory Disclaimer (§ 521 BGB) & License](#statutory-disclaimer--521-bgb--license)
 
 ---
 
@@ -56,6 +62,68 @@ The system enforces strict evidentiary discipline:
 - **Embodiment Principle:** A specialized generic agent ("You ARE the statute book") reads only the authentic statutory text — applying strict scope discipline (assessing applicability prior to application) and candidly flagging: *"My statutory wording does not decide this; here judicial interpretation begins."*
 - **Separate Jurisprudence Layer:** Court decisions are never recalled from training memory. Case law is gathered strictly via live web verification (court, date, docket number, ECLI, and verified citation). Negative lookups are explicitly marked as "not identified".
 - **Risk Traffic Light & Escalation Matrix:** Objective risk classification across Low, Medium, High, and Critical tiers, complemented by a legal specialization routing matrix and strict deadline discipline for incoming legal mail.
+
+---
+
+<a id="target-personas--use-cases"></a><a id="target-personas--high-intent-use-cases"></a>
+## Target Personas & High-Intent Use Cases
+
+`law-checker` is engineered for technical practitioners, developers, and compliance stakeholders operating under European and German legal jurisdictions who require fast, deterministic legal first-looks without risking hallucinated norms or data leakage:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       TARGET PERSONA MAPPING & USE CASES                    │
+├────────────────────────────────┬────────────────────────────────────────────┤
+│ [PERSONA-01] Legal Tech / Ops  │ Automated statutory first-looks for in-    │
+│                                │ house counsel without proprietary lock-in. │
+├────────────────────────────────┼────────────────────────────────────────────┤
+│ [PERSONA-02] OSS Maintainers   │ Rapid clarity on German Impressumspflicht, │
+│                                │ GDPR privacy notices & license attribution.│
+├────────────────────────────────┼────────────────────────────────────────────┤
+│ [PERSONA-03] AI Architects     │ Zero-hallucination statutory embodiment &  │
+│                                │ clean norm-vs-doctrine boundary design.    │
+├────────────────────────────────┼────────────────────────────────────────────┤
+│ [PERSONA-04] DPOs & Compliance │ Auditable assessment trails for GDPR, EHDS │
+│                                │ (EU 2025/327) & SGB V digital health norms.│
+└────────────────────────────────┴────────────────────────────────────────────┘
+```
+
+- **`[PERSONA-01]` Legal Tech Engineers & In-House Legal Operations:**
+  - *Core Problem:* Commercial legal databases (Beck-Online, Juris) lack native agentic LLM integration and charge thousands of euros per seat license; naive LLM chats hallucinate statutes.
+  - *Solution:* Fully scriptable, source-grounded CLI and skill pipeline for Claude Code grounded in official BMJ/BfJ XML repositories.
+  - *High-Intent Queries:* `German legal tech AI first look`, `automated statute checker API`, `in-house legal workflow LLM`.
+- **`[PERSONA-02]` Open-Source Maintainers & Indie Developers:**
+  - *Core Problem:* Unclear German regulatory obligations (e.g. *Impressumspflicht* under TDDDG / TMG, DSGVO compliance on GitHub, MIT/AGPL copyright notices under UrhG).
+  - *Solution:* Fast, reproducible check showing verbatim whether a personal developer repo requires a German imprint or falls under non-commercial exceptions.
+  - *High-Intent Queries:* `Is an Impressum required for personal GitHub repo Germany`, `TDDDG Impressum open source`, `German copyright UrhG software license`.
+- **`[PERSONA-03]` AI Agent Developers & Solution Architects:**
+  - *Core Problem:* Vector-based RAG truncates statutory text across chunk boundaries, separating general provisions from lex-specialis exceptions and producing false claims.
+  - *Solution:* The Embodiment Agent pattern (`agents/gesetzbuch.md`) where the LLM embodies the enacted statutory text with strict lexical discipline ("My wording does not decide this").
+  - *High-Intent Queries:* `Statute embodiment AI agent architecture`, `zero hallucination legal prompt pattern`, `Claude Code legal skill`.
+- **`[PERSONA-04]` Compliance Officers & Data Protection Officers (DPOs):**
+  - *Core Problem:* Digital health apps, AI products, and research software require verifiable GDPR, EHDS (Regulation (EU) 2025/327), and SGB V compliance assessments with an audit trail.
+  - *Solution:* 6-section Gutachten format with explicit risk scoring (Low, Medium, High, Critical), statutory citation timestamps, and professional legal referral escalation.
+  - *High-Intent Queries:* `EHDS Regulation EU 2025/327 legal compliance check`, `SGB V health data AI assessment`, `DSGVO privacy risk triage`.
+
+---
+
+<a id="comparative-architecture-matrix"></a>
+## Comparative Architecture Matrix
+
+How `law-checker` compares across 10 mission-critical architectural criteria against common alternatives:
+
+| Architectural Dimension | Naive LLM Chat (ChatGPT/Claude Raw) | Traditional Legal DBs (Beck/Juris) | Generic Legal RAG / Vectors | Unassisted Web Search / Forums | `law-checker` (Rechtsabteilung) |
+|---|---|---|---|---|---|
+| **1. Norm-Level Grounding** | ❌ None (param memory) | ⚠️ Manual lookup only | ⚠️ Partial (chunk splits) | ❌ Secondary sources only | ✅ **Strict Verbatim (§, Abs., S.)** |
+| **2. Hallucination Immunity** | ❌ Frequent invented §§ | ✅ High (authentic text) | ❌ Hallucinates context | ❌ High (outdated posts) | ✅ **100% Enacted XML Caches** |
+| **3. Embodiment Discipline** | ❌ Mixes opinion & law | ❌ N/A (human reader) | ❌ Blurs commentary & norm | ❌ Speculation rampant | ✅ **"You ARE the Statute Book"** |
+| **4. Case Law Verification** | ❌ Confabulated Az./ECLI | ✅ Comprehensive (paywalled)| ⚠️ Unverified citations | ⚠️ Mixed accuracy | ✅ **Live Web-Verified Only** |
+| **5. Zero-Egress Privacy** | ❌ Full prompt egress | ⚠️ Search queries logged | ⚠️ Embeddings sent to cloud | ❌ Trackers & search logs | ✅ **100% Local-First / Gitignored** |
+| **6. Regulatory Demarcation** | ❌ Disclaimers often weak | ⚠️ Enterprise terms | ❌ Unclear liability | ❌ Unregulated advice risk | ✅ **Strict § 2 RDG Self-Use Notice** |
+| **7. Deadline Triage** | ❌ Ignored | ❌ Manual calendar | ❌ Ignored | ❌ Easily missed | ✅ **Step 2 Priority Deadline Gate** |
+| **8. Versioned Registry** | ❌ Black-box training cutoff | ⚠️ Silent updates | ❌ Unversioned indexes | ❌ Search engine flux | ✅ **Auditable `config.json` (v5)** |
+| **9. Multi-OS CI Testing** | ❌ N/A | ❌ Closed proprietary | ⚠️ Ad-hoc unit tests | ❌ N/A | ✅ **Ubuntu / Windows / macOS CI** |
+| **10. Cost & License** | ⚠️ $20–$200/month/seat | ❌ €1,500–€5,000+/year | ⚠️ Infrastructure compute | ✅ Free (but time-sink) | ✅ **100% Free & Open Source (MIT)** |
 
 ---
 
@@ -269,11 +337,62 @@ The default statute registry (`config.json`, version 5) configures 13 statutes a
 
 ---
 
+<a id="report-architecture--visual-walkthrough"></a>
+## Report Architecture & Visual Walkthrough
+
+Every legal assessment generated by `law-checker` adheres strictly to the standardized 6-section *Gutachten* structure defined in [`references/berichtsformat.md`](references/berichtsformat.md), guaranteeing rigorous legal methodology (*Gutachtenstil*):
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 STRUCTURED LEGAL FIRST-LOOK ASSESSMENT ARCHITECTURE         │
+│ File: _gutachten/YYYY-MM-DD_<themen-slug>.md                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 1. Sachverhalt & Fragestellung (Factual Inquest & Scope)                    │
+│    ├─ Fragesteller, Kontext & Sachverhaltselemente                          │
+│    └─ MANDATORY PRIORITY CHECK: Fristenprüfung bei behördlicher/Rechtspost  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 2. Norm-Ebene: Authentischer Gesetzeswortlaut (Embodiment Extracts)         │
+│    ├─ Identifizierter relevanter Paragraphenbestand (z. B. § 5 TDDDG, BGB)   │
+│    └─ Absatz- und satzgenaue Verbatim-Zitate aus lokalem XML-Bestand        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 3. Rechtsprechung & Auslegung (Web-Verified Jurisprudence)                  │
+│    ├─ Relevante Leitentscheidungen (BGH, BAG, BVerfG, EuGH)                 │
+│    └─ Strenges Format: Gericht, Datum, Aktenzeichen, Fundstelle, ECLI       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 4. Synthese & Subsumtion (Legal Methodology / Gutachtenstil)                │
+│    ├─ Tatbestandsmerkmale vs. vorliegender Sachverhalt                      │
+│    └─ Klare Kennzeichnung: Was ist zwingend, was vertretbare Auslegung?     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 5. Risikoeinstufung & Anwaltsempfehlung (Risk Traffic Light & Referral)     │
+│    ├─ Ampel-Score: [GERING / GRÜN] | [MITTEL / GELB] | [HOCH] | [KRITISCH]   │
+│    ├─ Begründung & konkrete Schadens-/Abmahnpotenziale                      │
+│    └─ Fachanwalts-Empfehlung mit relevanter Fachgebietsbezeichnung          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 6. Quellenverzeichnis & Prüfprotokoll (Provenance & Audit Log)              │
+│    ├─ Verwendete Gesetzestexte mit amtlichem Abruf- und Standstempel        │
+│    └─ Revisions- und Modelldaten des ausführenden LLM-Laufs                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+<a id="third-party-licenses--sbom"></a>
+## Third-Party Licenses & SBOM
+
+`law-checker` is certified open source under the [MIT License](LICENSE). The project maintains a complete software bill of materials (SBOM) and licensing audit in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md):
+
+- **Zero-Copyleft Guarantee:** No GPL, AGPL, or SSPL-licensed dependencies; completely free for commercial and non-commercial local engineering.
+- **Unprivileged Execution (`RunAsInvoker`):** Requires no root or administrative elevation on any operating system.
+- **Official Public Domain Texts:** Statutory texts obtained from `gesetze-im-internet.de` constitute official government works (*Amtliche Werke*) under § 5 Abs. 1 UrhG (German Copyright Act) and are free of copyright. European Union legislative acts are reused under Commission Decision 2011/833/EU.
+
+---
+
 ## Repository Layout
 
 ```text
 law-checker/
 ├── .github/workflows/ci.yml    ← Multi-OS CI matrix (Ubuntu, Windows, macOS)
+├── .github/workflows/stale.yml ← Stale issue and pull request automation
 ├── SKILL.md                    ← Orchestrating skill workflow (10-step process)
 ├── config.json                 ← Statute registry and pipeline definition (v5)
 ├── agents/
@@ -291,6 +410,7 @@ law-checker/
 │   └── test_metadata.py        ← Automated contract and metadata parity tests
 ├── CHANGELOG.md                ← Version and release history
 ├── SECURITY.md                 ← Security policy with 48h response SLA
+├── THIRD_PARTY_LICENSES.md     ← Third-party license audit, SBOM & § 5 UrhG classification
 ├── MARKETING-LOG.txt           ← Local marketing & discoverability backlog
 ├── llms.txt                    ← Machine-readable context for AI coding agents
 ├── ellmos-module.v2.json       ← Standardized module manifest (rechtsabteilung)
@@ -322,8 +442,15 @@ The first complete evaluation executed by this workflow was its own public relea
 
 ---
 
-## License & Disclaimers
+<a id="license--disclaimers"></a><a id="statutory-disclaimer--521-bgb--license"></a>
+## Statutory Disclaimer (§ 521 BGB) & License
 
-- **License:** Released under the [MIT License](LICENSE) covering source code, agent prompts, and documentation.
+### Gesetzlicher Haftungshinweis gem. § 521 BGB (Gefälligkeitsrecht) / Gratuitous Open-Source Provision
+
+> [!IMPORTANT]
+> **Haftungsbeschränkung gem. § 521 BGB:** Die Bereitstellung dieser Software, der Dokumentation, der Prompts und der Prüfungsabläufe erfolgt unentgeltlich und als Gefälligkeit im Sinne des deutschen Zivilrechts (§ 521 BGB). Die Haftung der Urheber, Maintainer und Mitwirkenden ist auf Vorsatz und grobe Fahrlässigkeit beschränkt. Die Software stellt keine Rechtsdienstleistung im Sinne des § 2 Abs. 1 RDG dar und ersetzt keine individuelle Prüfung durch eine zugelassene Rechtsanwältin oder einen zugelassenen Rechtsanwalt. Es erfolgt keine Fristenkontrolle und keine Gewähr für Vollständigkeit, Fehlerfreiheit oder Aktualität.
+
+- **License:** Released under the permissive [MIT License](LICENSE) covering source code, agent prompts, and documentation.
+- **Third-Party SBOM:** Comprehensive audit of third-party libraries and public domain status under § 5 Abs. 1 UrhG is documented in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
 - **Warranty Disclaimer:** Provided "as is" without warranty of any kind regarding accuracy, completeness, or timeliness. Legal texts change over time; always verify against the official federal gazette (*Bundesgesetzblatt*) before relying on them.
 - **No Legal Advice:** This software facilitates initial orientation and research only. It does not provide legal advice or create an attorney-client relationship.

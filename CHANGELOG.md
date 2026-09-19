@@ -4,6 +4,23 @@ All notable changes to this project are documented here.
 The statute registry carries its own `version` counter in `config.json`;
 registry changes are listed under the release that shipped them.
 
+## 0.2.7 — 2026-09-19
+
+### Added
+
+- **Target Personas & High-Intent SEO Queries:** Formal persona mapping ([PERSONA-01] Legal Tech Engineers & In-House Legal Ops, [PERSONA-02] Open-Source Maintainers & Indie Developers, [PERSONA-03] AI Agent Developers & Solution Architects, [PERSONA-04] Compliance Officers & DPOs) with high-intent search queries in `README.md` and `README_de.md`.
+- **10-Dimension Comparative Matrix vs. 4 Alternatives:** In-depth comparative analysis evaluating `law-checker` against Naive General LLMs, Traditional Legal Databases (Beck/Juris), RAG/Vector Embedding Retrieval, and Web Search across 10 architectural invariants.
+- **18-Point Bilingual Navigation Parity:** Expanded quick navigation across `README.md` and `README_de.md` with reciprocal HTML anchor aliases (`<a id="..."></a>`) guaranteeing backward compatibility and bookmark stability.
+- **Statutory Open-Source Notice (§ 521 BGB Gefälligkeitsrecht):** Explicit statutory disclaimer for gratuitous open-source provision under German civil law in both English and German documentation.
+- **Third-Party License Audit & SBOM:** New canonical `THIRD_PARTY_LICENSES.md` documenting runtime dependencies, build tooling, and official public domain status (§ 5 Abs. 1 UrhG / Decision 2011/833/EU) with Zero-Copyleft isolation.
+- **Visual Terminal & Report Architecture Walkthrough:** Structured ASCII and visual workflow representation detailing the 6-section legal orientation format and interactive execution model.
+- **PEP 621 Metadata & Contract Test Expansion:** Updated `pyproject.toml` with `THIRD_PARTY_LICENSES.md` in `license-files`, enriched SEO keywords, and extended ecosystem URLs (`Third-Party Licenses`, `Marketing Log`, `LLM Ready`). Expanded `tests/test_metadata.py` with 6 new contract tests covering 18-point navigation, target personas, comparative matrix, third-party SBOM, § 521 BGB statutory notice, and version parity.
+
+### Changed
+
+- Synchronized `llms.txt` with version `0.2.7`, updated Last-checked date `2026-09-19`, expanded 18-point navigation references, and test suite counts.
+- Updated Shields.io badges in `README.md` and `README_de.md` to version `0.2.7`, tests badge to passing, and enriched metadata.
+
 ## 0.2.6 — 2026-09-10
 
 ### Added
