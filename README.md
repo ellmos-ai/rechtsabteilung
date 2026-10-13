@@ -244,6 +244,10 @@ EU AI Act self-classification: see [`docs/ai-act-note.md`](docs/ai-act-note.md).
 | **`report-forge`** | Domain-neutral core engine for formatted report generation pipelines | [report-forge](https://github.com/ellmos-ai/report-forge) |
 | **`steuer-assistent`** | Standalone tool for self-application tax expense documentation and orientation | [steuer-assistent](https://github.com/ellmos-ai/steuer-assistent) |
 
+### FolderHome consumer (pinned source)
+
+At FolderHome source commit [51d5dc71](https://github.com/ellmos-ai/FolderHome/commit/51d5dc71ec11f1cde4598c528323483a50f6e52c), the `law-checker` component pins this repository at [revision a5b0cd51](https://github.com/ellmos-ai/rechtsabteilung/commit/a5b0cd51bc3666962f2fae8017c855dea0a712a2). Its bridge validates the pinned `pyproject.toml`, module manifest, and local registry configuration without importing the law-checker agent workflow or exposing a legal-review API. The qualification reports no network invocation. The component manifest declares `legal.registry.read` without a gate and `legal.orientation.handoff` with a gate; neither declares side effects. This documents local metadata qualification and a separately gated handoff, not a legal assessment or a compatibility guarantee for later revisions.
+
 ---
 
 ## Installation & Quickstart

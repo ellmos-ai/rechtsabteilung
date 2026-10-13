@@ -52,6 +52,10 @@ Advisory Act (StBerG), Unfair Competition Act (UWG), GDPR, EHDS Regulation (EU)
 Criminal Code (StGB), Interstate Media Treaty (MStV). Federal statutes are
 fetched from gesetze-im-internet.de; EU texts are supplied manually from EUR-Lex.
 
+## Documented consumer
+
+- FolderHome source commit [51d5dc71](https://github.com/ellmos-ai/FolderHome/commit/51d5dc71ec11f1cde4598c528323483a50f6e52c) pins this repository as `law-checker` at [revision a5b0cd51](https://github.com/ellmos-ai/rechtsabteilung/commit/a5b0cd51bc3666962f2fae8017c855dea0a712a2). Its bridge validates the pinned project/module/registry metadata without importing the agent workflow; the qualification reports no network invocation and no legal-review API. The manifest declares `legal.registry.read` ungated and `legal.orientation.handoff` gated, with no declared side effects for either. This is a local metadata check and gated handoff, not a legal assessment or later-revision compatibility claim.
+
 ## Search Phrases
 
 ```text
