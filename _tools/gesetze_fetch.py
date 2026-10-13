@@ -62,7 +62,7 @@ def norm_text(norm: ET.Element) -> tuple[str, str, str]:
 def extract(xml_bytes: bytes, label: str, source_url: str) -> tuple[str, str]:
     """Liefert (volltext, index) mit Provenienz-Kopf."""
     root = ET.fromstring(xml_bytes)
-    stamp = _dt.date.today().isoformat()  # noqa: DTZ011 - lokales Abrufdatum
+    stamp = _dt.date.today().isoformat()
     head = (
         f"# {label} — amtliche Arbeitsfassung, Quelle: {source_url}\n"
         f"# Abgerufen: {stamp} | Extraktion: _tools/gesetze_fetch.py (Modul rechtsabteilung)\n"
