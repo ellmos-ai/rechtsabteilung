@@ -244,6 +244,10 @@ Projektbezogene EU-AI-Act-Selbsteinordnung: siehe [`docs/ai-act-note.md`](docs/a
 | **`report-forge`** | Domänenneutraler Kern für formatierte Gutachten- und Berichts-Pipelines | [report-forge](https://github.com/ellmos-ai/report-forge) |
 | **`steuer-assistent`** | Standalone-Werkzeug für Selbstanwendungs-Werbungskosten und Nachweiserfassung | [steuer-assistent](https://github.com/ellmos-ai/steuer-assistent) |
 
+### FolderHome-Verbraucher mit festgelegten Source-Revisionen
+
+Im FolderHome-Source-Commit [51d5dc71](https://github.com/ellmos-ai/FolderHome/commit/51d5dc71ec11f1cde4598c528323483a50f6e52c) ist die Komponente `law-checker` auf [diese Repository-Revision a5b0cd51](https://github.com/ellmos-ai/rechtsabteilung/commit/a5b0cd51bc3666962f2fae8017c855dea0a712a2) gepinnt. Die Bridge prüft das gepinnte `pyproject.toml`, Modulmanifest und die lokale Registry-Konfiguration, ohne den law-checker-Agentenworkflow zu laden oder eine API für Rechtsprüfungen bereitzustellen. Die Qualifizierung meldet keinen Netzwerkaufruf. Das Komponentenmanifest deklariert `legal.registry.read` ohne Gate und `legal.orientation.handoff` mit erforderlichem Gate; für beide sind keine Seiteneffekte deklariert. Das beschreibt eine lokale Metadatenqualifizierung und eine separat freigabepflichtige Übergabe, keine rechtliche Begutachtung oder Kompatibilitätsgarantie für spätere Revisionen.
+
 ---
 
 ## Installation und Schnelleinstieg
