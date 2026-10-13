@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Beschafft Normtexte für das Modul law-checker — registry-getrieben.
 
 Quelle: gesetze-im-internet.de (Bundesministerium der Justiz, amtliche
@@ -63,7 +62,7 @@ def norm_text(norm: ET.Element) -> tuple[str, str, str]:
 def extract(xml_bytes: bytes, label: str, source_url: str) -> tuple[str, str]:
     """Liefert (volltext, index) mit Provenienz-Kopf."""
     root = ET.fromstring(xml_bytes)
-    stamp = _dt.date.today().isoformat()
+    stamp = _dt.date.today().isoformat()  # noqa: DTZ011 - lokales Abrufdatum
     head = (
         f"# {label} — amtliche Arbeitsfassung, Quelle: {source_url}\n"
         f"# Abgerufen: {stamp} | Extraktion: _tools/gesetze_fetch.py (Modul rechtsabteilung)\n"
@@ -150,7 +149,7 @@ def main(argv: list[str]) -> int:
     for key, entry in selected.items():
         try:
             ok = process(key, entry) and ok
-        except Exception as exc:  # Netzwerk-/Parsefehler pro Gesetz isolieren
+        except Exception as exc:  # noqa: BLE001 - Netzwerk-/Parsefehler pro Gesetz isolieren
             print(f"[{key}] FEHLER: {exc}", file=sys.stderr)
             ok = False
     return 0 if ok else 1
