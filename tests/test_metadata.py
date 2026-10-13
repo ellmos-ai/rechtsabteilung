@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Automated metadata, CI matrix, manifest, and hygiene contract tests."""
 from __future__ import annotations
 

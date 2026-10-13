@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 """Unit tests for _tools/gesetze_fetch.py."""
 import xml.etree.ElementTree as ET
 
-from _tools.gesetze_fetch import load_registry, norm_text, extract, process
+from _tools.gesetze_fetch import extract, load_registry, norm_text, process
 
 
 def test_load_registry():
