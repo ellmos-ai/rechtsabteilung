@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Beschafft Normtexte für das Modul law-checker — registry-getrieben.
 
 Quelle: gesetze-im-internet.de (Bundesministerium der Justiz, amtliche
@@ -150,7 +149,7 @@ def main(argv: list[str]) -> int:
     for key, entry in selected.items():
         try:
             ok = process(key, entry) and ok
-        except Exception as exc:  # Netzwerk-/Parsefehler pro Gesetz isolieren
+        except Exception as exc:  # noqa: BLE001 - Netzwerk-/Parsefehler pro Gesetz isolieren
             print(f"[{key}] FEHLER: {exc}", file=sys.stderr)
             ok = False
     return 0 if ok else 1
