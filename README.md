@@ -1,4 +1,4 @@
-**English** | [Deutsch](README_de.md)
+**English** | [Deutsch](README_de.md) | [Español](README_es.md) | [Français](README_fr.md) | [Português](README_pt.md) | [Русский](README_ru.md) | [简体中文](README_zh.md) | [日本語](README_ja.md) | [العربية](README_ar.md) | [हिन्दी](README_hi.md) | [বাংলা](README_bn.md)
 
 ![law-checker banner](assets/banner.png)
 
@@ -7,7 +7,7 @@
 [![Version: 0.2.7](https://img.shields.io/badge/Version-0.2.7-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/Tests-28%20passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-29%20passed-brightgreen.svg)](tests/)
 [![CI Matrix](https://img.shields.io/badge/CI-Multi--OS%20%7C%20Ubuntu%20%7C%20Windows%20%7C%20macOS-blue.svg)](.github/workflows/ci.yml)
 [![Local-First](https://img.shields.io/badge/Architecture-Local--First-green.svg)](#data-privacy--confidentiality)
 [![Zero-Egress](https://img.shields.io/badge/Privacy-100%25%20Offline%20%2F%20Zero--Egress-success.svg)](#data-privacy--confidentiality)

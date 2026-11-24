@@ -31,6 +31,7 @@ environment such as Claude Code.
 
 - `README.md` - public overview in English, 18-point navigation, target personas, comparative matrix, system architecture, sequence diagram, and invariants
 - `README_de.md` - vollständige deutsche Dokumentation mit 100% Parität, 18-Punkte-Schnellnavigation, Zielgruppen und Vergleichsmatrix
+- `README_es.md`, `README_fr.md`, `README_pt.md`, `README_ru.md`, `README_zh.md`, `README_ja.md`, `README_ar.md`, `README_hi.md`, `README_bn.md` - complete 11-language World-Set documentation guides with full structural, anchor, diagram, and link parity
 - `SKILL.md` - orchestration workflow for the legal first-look skill
 - `config.json` - statute registry and workflow configuration
 - `agents/gesetzbuch.md` - generic statute embodiment agent
