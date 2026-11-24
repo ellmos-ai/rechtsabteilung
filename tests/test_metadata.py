@@ -407,3 +407,48 @@ def test_pyproject_license_files():
     assert "LICENSE" in license_files
     assert "THIRD_PARTY_LICENSES.md" in license_files
 
+
+def test_worldset_eleven_language_parity():
+    """Verify all 11 World-Set README guides exist with reciprocal switchers and parity."""
+    world_langs = [
+        ("en", "README.md", "English"),
+        ("de", "README_de.md", "Deutsch"),
+        ("es", "README_es.md", "Español"),
+        ("fr", "README_fr.md", "Français"),
+        ("pt", "README_pt.md", "Português"),
+        ("ru", "README_ru.md", "Русский"),
+        ("zh", "README_zh.md", "简体中文"),
+        ("ja", "README_ja.md", "日本語"),
+        ("ar", "README_ar.md", "العربية"),
+        ("hi", "README_hi.md", "हिन्दी"),
+        ("bn", "README_bn.md", "বাংলা"),
+    ]
+    bidi_controls = set("\u200e\u200f\u202a\u202b\u202c\u202d\u202e\u2066\u2067\u2068\u2069\ufffd")
+
+    for code, fname, _label in world_langs:
+        fpath = ROOT / fname
+        assert fpath.is_file(), f"Missing World-Set guide: {fname}"
+        text = fpath.read_text(encoding="utf-8")
+        lines = text.splitlines()
+        assert lines, f"Empty World-Set guide: {fname}"
+
+        expected_switcher = " | ".join(
+            f"**{lbl}**" if c == code else f"[{lbl}]({fn})"
+            for c, fn, lbl in world_langs
+        )
+        assert lines[0].strip() == expected_switcher, f"{fname} line 1 switcher mismatch"
+        assert not any(ch in bidi_controls for ch in text), f"{fname} has forbidden control chars"
+        assert "flowchart TD" in text, f"{fname} missing flowchart TD"
+        assert "sequenceDiagram" in text, f"{fname} missing sequenceDiagram"
+        assert "autonumber" in text, f"{fname} missing autonumber"
+        assert "§ 521 BGB" in text, f"{fname} missing § 521 BGB"
+        assert "§ 2 Abs. 1 RDG" in text, f"{fname} missing § 2 Abs. 1 RDG"
+        for persona in ("[PERSONA-01]", "[PERSONA-02]", "[PERSONA-03]", "[PERSONA-04]"):
+            assert persona in text, f"{fname} missing {persona}"
+        for inv_num in range(1, 11):
+            assert f"| {inv_num} |" in text, f"{fname} missing invariant #{inv_num}"
+        if code not in ("en", "de"):
+            for sec_idx in range(1, 19):
+                aid = f"sec-{sec_idx:02d}"
+                assert f"](#{aid})" in text, f"{fname} missing TOC link #{aid}"
+                assert f'<a id="{aid}"></a>' in text, f"{fname} missing anchor #{aid}"

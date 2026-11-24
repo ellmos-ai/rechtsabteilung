@@ -4,6 +4,12 @@ All notable changes to this project are documented here.
 The statute registry carries its own `version` counter in `config.json`;
 registry changes are listed under the release that shipped them.
 
+## Unreleased
+
+### Added
+
+- **11-Language World-Set Documentation Parity:** Added complete localized guides in Spanish (`README_es.md`), French (`README_fr.md`), Portuguese (`README_pt.md`), Russian (`README_ru.md`), Simplified Chinese (`README_zh.md`), Japanese (`README_ja.md`), Arabic (`README_ar.md`), Hindi (`README_hi.md`), and Bengali (`README_bn.md`) with 11×11 reciprocal language switchers, deterministic 18-section navigation anchors, localized Mermaid diagrams, synchronized `llms.txt` entries, and automated World-Set contract tests in `tests/test_metadata.py` (version `0.2.7` frozen).
+
 ## 0.2.7 — 2026-09-19
 
 ### Added
